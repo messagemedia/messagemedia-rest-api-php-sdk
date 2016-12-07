@@ -1,9 +1,9 @@
-# .
+# MessageMedia REST API
 Australia's Leading Messaging Solutions for Business and Enterprise.
 
 
 - API version: 1.0.0
-- Build date: 2016-12-07T02:42:25.599Z
+- Build date: 2016-12-07T02:49:35.907Z
 For more information, please visit [https://www.messagemedia.com/contact-us](https://www.messagemedia.com/contact-us)
 
 ## Requirements
