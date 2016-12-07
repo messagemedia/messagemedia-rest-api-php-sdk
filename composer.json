@@ -2,17 +2,16 @@
     "name": "GIT_USER_ID/GIT_REPO_ID",
     "description": "",
     "keywords": [
-        "swagger",
         "php",
         "sdk",
         "api"
     ],
-    "homepage": "http://swagger.io",
+    "homepage": "https://developers.messagemedia.com",
     "license": "Apache v2",
     "authors": [
         {
-            "name": "Swagger and contributors",
-            "homepage": "https://github.com/swagger-api/swagger-codegen"
+            "name": "MessageMedia",
+            "homepage": "https://developers.messagemedia.com"
         }
     ],
     "require": {
