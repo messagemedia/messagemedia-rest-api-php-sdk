@@ -3,7 +3,7 @@ Australia's Leading Messaging Solutions for Business and Enterprise.
 
 
 - API version: 1.0.0
-- Build date: 2016-12-07T02:37:36.813Z
+- Build date: 2016-12-07T02:42:25.599Z
 For more information, please visit [https://www.messagemedia.com/contact-us](https://www.messagemedia.com/contact-us)
 
 ## Requirements
@@ -20,11 +20,11 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+      "url": "https://github.com/messagemedia/messagemedia-rest-api-php-sdk.git"
     }
   ],
   "require": {
-    "GIT_USER_ID/GIT_REPO_ID": "*@dev"
+    "messagemedia/messagemedia-rest-api-php-sdk": "*@dev"
   }
 }
 ```
