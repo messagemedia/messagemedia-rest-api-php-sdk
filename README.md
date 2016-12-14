@@ -3,7 +3,7 @@ Australia's Leading Messaging Solutions for Business and Enterprise.
 
 
 - API version: 1.0.0
-- Build date: 2016-12-14T22:24:40.538Z
+- Build date: 2016-12-14T22:30:41.296Z
 For more information, please visit [https://www.messagemedia.com/contact-us](https://www.messagemedia.com/contact-us)
 
 ## Requirements
@@ -99,8 +99,6 @@ Class | Method | HTTP request | Description
  - [DeliveryReportId](docs/Model/DeliveryReportId.md)
  - [DeliveryReports](docs/Model/DeliveryReports.md)
  - [InlineResponse400](docs/Model/InlineResponse400.md)
- - [MessageFormat](docs/Model/MessageFormat.md)
- - [MessageStatus](docs/Model/MessageStatus.md)
  - [MessageStatusCode](docs/Model/MessageStatusCode.md)
  - [Messages](docs/Model/Messages.md)
  - [NewMessage](docs/Model/NewMessage.md)
