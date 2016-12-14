@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **content** | **string** | Content of the message | [optional] 
 **destination_address** | **string** | Address this message was delivered to. If this message was received in response to a sent message, this is the source address of the sent message | [optional] 
 **destination_address_country** | **string** | Country associated with the destination address | [optional] 
-**format** | [**\MessageMedia\RESTAPI\Model\MessageFormat**](MessageFormat.md) |  | [optional] 
+**format** | **string** | Format of message, SMS or VOICE | [optional] 
 **id** | **string** | Unique ID for this reply | [optional] 
 **in_response_to** | **string** | If this message was received in response to a sent message, this is the ID of the sent message | [optional] 
 **metadata** | **object** | If this message was received in response to a sent message, this is the metadata associated with the sent message | [optional] 

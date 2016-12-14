@@ -65,7 +65,7 @@ class SentMessage implements ArrayAccess
         'delivery_report' => 'bool',
         'destination_address' => 'string',
         'destination_address_country' => 'string',
-        'format' => '\MessageMedia\RESTAPI\Model\MessageFormat',
+        'format' => 'string',
         'id' => 'string',
         'in_response_to' => 'string',
         'metadata' => 'object',
@@ -154,8 +154,22 @@ class SentMessage implements ArrayAccess
         return self::$getters;
     }
 
+    const FORMAT_SMS = 'SMS';
+    const FORMAT_VOICE = 'VOICE';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getFormatAllowableValues()
+    {
+        return [
+            self::FORMAT_SMS,
+            self::FORMAT_VOICE,
+        ];
+    }
     
 
     /**
@@ -209,6 +223,11 @@ class SentMessage implements ArrayAccess
             $invalid_properties[] = "invalid value for 'destination_address', the character length must be bigger than or equal to 1.";
         }
 
+        $allowed_values = array("SMS", "VOICE");
+        if (!in_array($this->container['format'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'format', must be one of #{allowed_values}.";
+        }
+
         if (!is_null($this->container['source_address']) && (strlen($this->container['source_address']) > 15)) {
             $invalid_properties[] = "invalid value for 'source_address', the character length must be smaller than or equal to 15.";
         }
@@ -238,6 +257,10 @@ class SentMessage implements ArrayAccess
             return false;
         }
         if (strlen($this->container['destination_address']) < 1) {
+            return false;
+        }
+        $allowed_values = array("SMS", "VOICE");
+        if (!in_array($this->container['format'], $allowed_values)) {
             return false;
         }
         if (strlen($this->container['source_address']) > 15) {
@@ -390,7 +413,7 @@ class SentMessage implements ArrayAccess
 
     /**
      * Gets format
-     * @return \MessageMedia\RESTAPI\Model\MessageFormat
+     * @return string
      */
     public function getFormat()
     {
@@ -399,11 +422,15 @@ class SentMessage implements ArrayAccess
 
     /**
      * Sets format
-     * @param \MessageMedia\RESTAPI\Model\MessageFormat $format
+     * @param string $format Format of message, SMS or VOICE
      * @return $this
      */
     public function setFormat($format)
     {
+        $allowed_values = array('SMS', 'VOICE');
+        if (!in_array($format, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'format', must be one of 'SMS', 'VOICE'");
+        }
         $this->container['format'] = $format;
 
         return $this;

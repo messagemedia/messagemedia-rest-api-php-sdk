@@ -192,7 +192,7 @@ class NewMessage implements ArrayAccess
         $this->container['content'] = isset($data['content']) ? $data['content'] : null;
         $this->container['destination_number'] = isset($data['destination_number']) ? $data['destination_number'] : null;
         $this->container['delivery_report'] = isset($data['delivery_report']) ? $data['delivery_report'] : false;
-        $this->container['format'] = isset($data['format']) ? $data['format'] : 'SMS';
+        $this->container['format'] = isset($data['format']) ? $data['format'] : null;
         $this->container['message_expiry_timestamp'] = isset($data['message_expiry_timestamp']) ? $data['message_expiry_timestamp'] : null;
         $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
         $this->container['scheduled'] = isset($data['scheduled']) ? $data['scheduled'] : null;

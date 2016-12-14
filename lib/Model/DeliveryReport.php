@@ -69,7 +69,7 @@ class DeliveryReport implements ArrayAccess
         'metadata' => 'object',
         'source_address' => 'string',
         'source_address_country' => 'string',
-        'status' => '\MessageMedia\RESTAPI\Model\MessageStatus',
+        'status' => 'string',
         'status_code' => '\MessageMedia\RESTAPI\Model\MessageStatusCode',
         'timestamp' => '\DateTime'
     );
@@ -153,6 +153,17 @@ class DeliveryReport implements ArrayAccess
 
     const FORMAT_SMS = 'SMS';
     const FORMAT_VOICE = 'VOICE';
+    const STATUS_QUEUED = 'queued';
+    const STATUS_PROCESSING = 'processing';
+    const STATUS_PROCESSED = 'processed';
+    const STATUS_SCHEDULED = 'scheduled';
+    const STATUS_CANCELLED = 'cancelled';
+    const STATUS_ENROUTE = 'enroute';
+    const STATUS_HELD = 'held';
+    const STATUS_SUBMITTED = 'submitted';
+    const STATUS_DELIVERED = 'delivered';
+    const STATUS_EXPIRED = 'expired';
+    const STATUS_REJECTED = 'rejected';
     
 
     
@@ -165,6 +176,27 @@ class DeliveryReport implements ArrayAccess
         return [
             self::FORMAT_SMS,
             self::FORMAT_VOICE,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_QUEUED,
+            self::STATUS_PROCESSING,
+            self::STATUS_PROCESSED,
+            self::STATUS_SCHEDULED,
+            self::STATUS_CANCELLED,
+            self::STATUS_ENROUTE,
+            self::STATUS_HELD,
+            self::STATUS_SUBMITTED,
+            self::STATUS_DELIVERED,
+            self::STATUS_EXPIRED,
+            self::STATUS_REJECTED,
         ];
     }
     
@@ -184,7 +216,7 @@ class DeliveryReport implements ArrayAccess
         $this->container['account'] = isset($data['account']) ? $data['account'] : null;
         $this->container['destination_address'] = isset($data['destination_address']) ? $data['destination_address'] : null;
         $this->container['destination_address_country'] = isset($data['destination_address_country']) ? $data['destination_address_country'] : null;
-        $this->container['format'] = isset($data['format']) ? $data['format'] : 'SMS';
+        $this->container['format'] = isset($data['format']) ? $data['format'] : null;
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['in_response_to'] = isset($data['in_response_to']) ? $data['in_response_to'] : null;
         $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
@@ -232,6 +264,11 @@ class DeliveryReport implements ArrayAccess
             $invalid_properties[] = "invalid value for 'source_address', the character length must be bigger than or equal to 1.";
         }
 
+        $allowed_values = array("queued", "processing", "processed", "scheduled", "cancelled", "enroute", "held", "submitted", "delivered", "expired", "rejected");
+        if (!in_array($this->container['status'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'status', must be one of #{allowed_values}.";
+        }
+
         return $invalid_properties;
     }
 
@@ -263,6 +300,10 @@ class DeliveryReport implements ArrayAccess
             return false;
         }
         if (strlen($this->container['source_address']) < 1) {
+            return false;
+        }
+        $allowed_values = array("queued", "processing", "processed", "scheduled", "cancelled", "enroute", "held", "submitted", "delivered", "expired", "rejected");
+        if (!in_array($this->container['status'], $allowed_values)) {
             return false;
         }
         return true;
@@ -482,7 +523,7 @@ class DeliveryReport implements ArrayAccess
 
     /**
      * Gets status
-     * @return \MessageMedia\RESTAPI\Model\MessageStatus
+     * @return string
      */
     public function getStatus()
     {
@@ -491,11 +532,15 @@ class DeliveryReport implements ArrayAccess
 
     /**
      * Sets status
-     * @param \MessageMedia\RESTAPI\Model\MessageStatus $status
+     * @param string $status Status of the message
      * @return $this
      */
     public function setStatus($status)
     {
+        $allowed_values = array('queued', 'processing', 'processed', 'scheduled', 'cancelled', 'enroute', 'held', 'submitted', 'delivered', 'expired', 'rejected');
+        if (!in_array($status, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'status', must be one of 'queued', 'processing', 'processed', 'scheduled', 'cancelled', 'enroute', 'held', 'submitted', 'delivered', 'expired', 'rejected'");
+        }
         $this->container['status'] = $status;
 
         return $this;
