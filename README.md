@@ -1,9 +1,9 @@
-# MessageMedia REST API
+# MessageMedia REST API PHP SDK
 Australia's Leading Messaging Solutions for Business and Enterprise.
 
 
 - API version: 1.0.0
-- Build date: 2016-12-15T03:15:40.069Z
+- Build date: 2016-12-15T03:27:40.047Z
 For more information, please visit [https://www.messagemedia.com/contact-us](https://www.messagemedia.com/contact-us)
 
 ## Requirements
