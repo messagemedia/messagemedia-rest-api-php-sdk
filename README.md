@@ -3,7 +3,7 @@ Australia's Leading Messaging Solutions for Business and Enterprise.
 
 
 - API version: 1.0.0
-- Build date: 2016-12-15T03:44:10.853Z
+- Build date: 2016-12-15T03:49:37.268Z
 For more information, please visit [https://www.messagemedia.com/contact-us](https://www.messagemedia.com/contact-us)
 
 ## Requirements
