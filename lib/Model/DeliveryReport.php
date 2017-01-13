@@ -152,7 +152,7 @@ class DeliveryReport implements ArrayAccess
     }
 
     const FORMAT_SMS = 'SMS';
-    const FORMAT_VOICE = 'VOICE';
+    const FORMAT_TTS = 'TTS';
     const STATUS_QUEUED = 'queued';
     const STATUS_PROCESSING = 'processing';
     const STATUS_PROCESSED = 'processed';
@@ -175,7 +175,7 @@ class DeliveryReport implements ArrayAccess
     {
         return [
             self::FORMAT_SMS,
-            self::FORMAT_VOICE,
+            self::FORMAT_TTS,
         ];
     }
     
@@ -251,7 +251,7 @@ class DeliveryReport implements ArrayAccess
             $invalid_properties[] = "invalid value for 'destination_address', the character length must be bigger than or equal to 1.";
         }
 
-        $allowed_values = array("SMS", "VOICE");
+        $allowed_values = array("SMS", "TTS");
         if (!in_array($this->container['format'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'format', must be one of #{allowed_values}.";
         }
@@ -292,7 +292,7 @@ class DeliveryReport implements ArrayAccess
         if (strlen($this->container['destination_address']) < 1) {
             return false;
         }
-        $allowed_values = array("SMS", "VOICE");
+        $allowed_values = array("SMS", "TTS");
         if (!in_array($this->container['format'], $allowed_values)) {
             return false;
         }
@@ -396,14 +396,14 @@ class DeliveryReport implements ArrayAccess
 
     /**
      * Sets format
-     * @param string $format Format of message, SMS or VOICE
+     * @param string $format Format of message, SMS or TTS (Text To Speech)
      * @return $this
      */
     public function setFormat($format)
     {
-        $allowed_values = array('SMS', 'VOICE');
+        $allowed_values = array('SMS', 'TTS');
         if (!in_array($format, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'format', must be one of 'SMS', 'VOICE'");
+            throw new \InvalidArgumentException("Invalid value for 'format', must be one of 'SMS', 'TTS'");
         }
         $this->container['format'] = $format;
 

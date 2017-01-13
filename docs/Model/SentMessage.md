@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **delivery_report** | **bool** | Indicates if a delivery report was requested for this message | [optional] 
 **destination_address** | **string** | Address this message was delivered to | [optional] 
 **destination_address_country** | **string** | Country associated with the destination address | [optional] 
-**format** | **string** | Format of message, SMS or VOICE | [optional] 
+**format** | **string** | Format of message, SMS or TTS (Text To Speech) | [optional] 
 **id** | **string** | Unique ID for this message | [optional] 
 **in_response_to** | **string** | If this message was sent in response to a received message (an auto response message for example) this is the ID of the received message. | [optional] 
 **metadata** | **object** | Metadata associated with this message | [optional] 
