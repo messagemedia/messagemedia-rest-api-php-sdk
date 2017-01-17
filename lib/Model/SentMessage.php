@@ -71,6 +71,7 @@ class SentMessage implements ArrayAccess
         'metadata' => 'object',
         'source_address' => 'string',
         'source_address_country' => 'string',
+        'units' => 'int',
         'timestamp' => '\DateTime'
     );
 
@@ -96,6 +97,7 @@ class SentMessage implements ArrayAccess
         'metadata' => 'metadata',
         'source_address' => 'source_address',
         'source_address_country' => 'source_address_country',
+        'units' => 'units',
         'timestamp' => 'timestamp'
     );
 
@@ -121,6 +123,7 @@ class SentMessage implements ArrayAccess
         'metadata' => 'setMetadata',
         'source_address' => 'setSourceAddress',
         'source_address_country' => 'setSourceAddressCountry',
+        'units' => 'setUnits',
         'timestamp' => 'setTimestamp'
     );
 
@@ -146,6 +149,7 @@ class SentMessage implements ArrayAccess
         'metadata' => 'getMetadata',
         'source_address' => 'getSourceAddress',
         'source_address_country' => 'getSourceAddressCountry',
+        'units' => 'getUnits',
         'timestamp' => 'getTimestamp'
     );
 
@@ -196,6 +200,7 @@ class SentMessage implements ArrayAccess
         $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
         $this->container['source_address'] = isset($data['source_address']) ? $data['source_address'] : null;
         $this->container['source_address_country'] = isset($data['source_address_country']) ? $data['source_address_country'] : null;
+        $this->container['units'] = isset($data['units']) ? $data['units'] : null;
         $this->container['timestamp'] = isset($data['timestamp']) ? $data['timestamp'] : null;
     }
 
@@ -543,6 +548,27 @@ class SentMessage implements ArrayAccess
     public function setSourceAddressCountry($source_address_country)
     {
         $this->container['source_address_country'] = $source_address_country;
+
+        return $this;
+    }
+
+    /**
+     * Gets units
+     * @return int
+     */
+    public function getUnits()
+    {
+        return $this->container['units'];
+    }
+
+    /**
+     * Sets units
+     * @param int $units The total number of calculated SMS units this message cost. 1 SMS unit is defined as 160 GSM characters, or 153 GSM characters for multi-part messages as some characters are used to concatenate the message on the receiving handset. Messages with one or more non-GSM characters will be submitted using UCS-2 encoding. UCS-2 encoding means the message has a maximum of 70 characters per SMS, or 67 characters for multi-part messages.
+     * @return $this
+     */
+    public function setUnits($units)
+    {
+        $this->container['units'] = $units;
 
         return $this;
     }

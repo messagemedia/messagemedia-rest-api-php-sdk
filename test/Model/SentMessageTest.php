@@ -185,6 +185,14 @@ class SentMessageTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "units"
+     */
+    public function testPropertyUnits()
+    {
+
+    }
+
+    /**
      * Test attribute "timestamp"
      */
     public function testPropertyTimestamp()
