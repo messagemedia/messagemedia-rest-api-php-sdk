@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getDeliveryReportsDetail**](MessagingReportsApi.md#getDeliveryReportsDetail) | **GET** /reporting/delivery_reports/detail | Returns a list of delivery reports
 [**getDeliveryReportsSummary**](MessagingReportsApi.md#getDeliveryReportsSummary) | **GET** /reporting/delivery_reports/summary | Returns a summarised report of delivery reports
+[**getMetadataKeys**](MessagingReportsApi.md#getMetadataKeys) | **GET** /reporting/{messageType}/metadata/keys | Returns a list of metadata keys
 [**getReceivedMessagesDetail**](MessagingReportsApi.md#getReceivedMessagesDetail) | **GET** /reporting/received_messages/detail | Returns a list message received
 [**getReceivedMessagesSummary**](MessagingReportsApi.md#getReceivedMessagesSummary) | **GET** /reporting/received_messages/summary | Returns a summarised report of messages received
 [**getSentMessagesDetail**](MessagingReportsApi.md#getSentMessagesDetail) | **GET** /reporting/sent_messages/detail | Returns a list of message sent
@@ -160,6 +161,63 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\MessageMedia\RESTAPI\Model\SummaryReport**](../Model/SummaryReport.md)
+
+### Authorization
+
+[basic](../../README.md#basic)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getMetadataKeys**
+> \MessageMedia\RESTAPI\Model\MetadataKeysResponse getMetadataKeys($message_type, $start_date, $end_date, $account, $timezone)
+
+Returns a list of metadata keys
+
+Returns a list of all metadata keys used for the specified message type during the specified time. Results are limited to 100 keys.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: basic
+MessageMedia\RESTAPI\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
+MessageMedia\RESTAPI\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
+
+$api_instance = new MessageMedia\RESTAPI\Api\MessagingReportsApi();
+$message_type = "message_type_example"; // string | Message type. Possible values are sent messages, received messages and delivery receipts.
+$start_date = new \DateTime(); // \DateTime | Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
+$end_date = new \DateTime(); // \DateTime | End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
+$account = "account_example"; // string | Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
+$timezone = "timezone_example"; // string | The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. 'Australia/Melbourne'.
+
+try {
+    $result = $api_instance->getMetadataKeys($message_type, $start_date, $end_date, $account, $timezone);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MessagingReportsApi->getMetadataKeys: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **message_type** | **string**| Message type. Possible values are sent messages, received messages and delivery receipts. |
+ **start_date** | **\DateTime**| Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
+ **end_date** | **\DateTime**| End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
+ **account** | **string**| Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
+ **timezone** | **string**| The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. &#39;Australia/Melbourne&#39;. | [optional]
+
+### Return type
+
+[**\MessageMedia\RESTAPI\Model\MetadataKeysResponse**](../Model/MetadataKeysResponse.md)
 
 ### Authorization
 

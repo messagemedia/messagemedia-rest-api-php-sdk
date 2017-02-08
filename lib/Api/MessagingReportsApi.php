@@ -573,6 +573,134 @@ class MessagingReportsApi
     }
 
     /**
+     * Operation getMetadataKeys
+     *
+     * Returns a list of metadata keys
+     *
+     * @param string $message_type Message type. Possible values are sent messages, received messages and delivery receipts. (required)
+     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
+     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
+     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $timezone The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. &#39;Australia/Melbourne&#39;. (optional)
+     * @return \MessageMedia\RESTAPI\Model\MetadataKeysResponse
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function getMetadataKeys($message_type, $start_date, $end_date, $account = null, $timezone = null)
+    {
+        list($response) = $this->getMetadataKeysWithHttpInfo($message_type, $start_date, $end_date, $account, $timezone);
+        return $response;
+    }
+
+    /**
+     * Operation getMetadataKeysWithHttpInfo
+     *
+     * Returns a list of metadata keys
+     *
+     * @param string $message_type Message type. Possible values are sent messages, received messages and delivery receipts. (required)
+     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
+     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
+     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $timezone The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. &#39;Australia/Melbourne&#39;. (optional)
+     * @return Array of \MessageMedia\RESTAPI\Model\MetadataKeysResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function getMetadataKeysWithHttpInfo($message_type, $start_date, $end_date, $account = null, $timezone = null)
+    {
+        // verify the required parameter 'message_type' is set
+        if ($message_type === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $message_type when calling getMetadataKeys');
+        }
+        // verify the required parameter 'start_date' is set
+        if ($start_date === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $start_date when calling getMetadataKeys');
+        }
+        // verify the required parameter 'end_date' is set
+        if ($end_date === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $end_date when calling getMetadataKeys');
+        }
+        if (!is_null($account) && (strlen($account) > 200)) {
+            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getMetadataKeys, must be smaller than or equal to 200.');
+        }
+        if (!is_null($account) && (strlen($account) < 1)) {
+            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getMetadataKeys, must be bigger than or equal to 1.');
+        }
+
+        // parse inputs
+        $resourcePath = "/reporting/{messageType}/metadata/keys";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // query params
+        if ($start_date !== null) {
+            $queryParams['start_date'] = $this->apiClient->getSerializer()->toQueryValue($start_date);
+        }
+        // query params
+        if ($end_date !== null) {
+            $queryParams['end_date'] = $this->apiClient->getSerializer()->toQueryValue($end_date);
+        }
+        // query params
+        if ($account !== null) {
+            $queryParams['account'] = $this->apiClient->getSerializer()->toQueryValue($account);
+        }
+        // query params
+        if ($timezone !== null) {
+            $queryParams['timezone'] = $this->apiClient->getSerializer()->toQueryValue($timezone);
+        }
+        // path params
+        if ($message_type !== null) {
+            $resourcePath = str_replace(
+                "{" . "messageType" . "}",
+                $this->apiClient->getSerializer()->toPathValue($message_type),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires HTTP basic authentication
+        if (strlen($this->apiClient->getConfig()->getUsername()) !== 0 or strlen($this->apiClient->getConfig()->getPassword()) !== 0) {
+            $headerParams['Authorization'] = 'Basic ' . base64_encode($this->apiClient->getConfig()->getUsername() . ":" . $this->apiClient->getConfig()->getPassword());
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\MessageMedia\RESTAPI\Model\MetadataKeysResponse',
+                '/reporting/{messageType}/metadata/keys'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\MessageMedia\RESTAPI\Model\MetadataKeysResponse', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\MessageMedia\RESTAPI\Model\MetadataKeysResponse', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
      * Operation getReceivedMessagesDetail
      *
      * Returns a list message received

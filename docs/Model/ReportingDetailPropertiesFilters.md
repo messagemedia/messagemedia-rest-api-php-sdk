@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **status_code** | **string** |  | [optional] 
 **status** | **string** |  | [optional] 
 **action** | **string** |  | [optional] 
+**accounts** | **string[]** | List of accounts that were used to generate this report | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
