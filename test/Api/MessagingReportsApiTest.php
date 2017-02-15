@@ -105,17 +105,6 @@ class MessagingReportsApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for getMetadataKeys
-     *
-     * Returns a list of metadata keys.
-     *
-     */
-    public function testGetMetadataKeys()
-    {
-
-    }
-
-    /**
      * Test case for getReceivedMessagesDetail
      *
      * Returns a list message received.

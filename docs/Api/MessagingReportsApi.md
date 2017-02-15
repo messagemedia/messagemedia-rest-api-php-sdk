@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getDeliveryReportsDetail**](MessagingReportsApi.md#getDeliveryReportsDetail) | **GET** /reporting/delivery_reports/detail | Returns a list of delivery reports
 [**getDeliveryReportsSummary**](MessagingReportsApi.md#getDeliveryReportsSummary) | **GET** /reporting/delivery_reports/summary | Returns a summarised report of delivery reports
-[**getMetadataKeys**](MessagingReportsApi.md#getMetadataKeys) | **GET** /reporting/{messageType}/metadata/keys | Returns a list of metadata keys
 [**getReceivedMessagesDetail**](MessagingReportsApi.md#getReceivedMessagesDetail) | **GET** /reporting/received_messages/detail | Returns a list message received
 [**getReceivedMessagesSummary**](MessagingReportsApi.md#getReceivedMessagesSummary) | **GET** /reporting/received_messages/summary | Returns a summarised report of messages received
 [**getSentMessagesDetail**](MessagingReportsApi.md#getSentMessagesDetail) | **GET** /reporting/sent_messages/detail | Returns a list of message sent
@@ -14,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **getDeliveryReportsDetail**
-> \MessageMedia\RESTAPI\Model\DeliveryReports getDeliveryReportsDetail($end_date, $start_date, $account, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone)
+> \MessageMedia\RESTAPI\Model\DeliveryReports getDeliveryReportsDetail($end_date, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone)
 
 Returns a list of delivery reports
 
@@ -32,7 +31,7 @@ MessageMedia\RESTAPI\Configuration::getDefaultConfiguration()->setPassword('YOUR
 $api_instance = new MessageMedia\RESTAPI\Api\MessagingReportsApi();
 $end_date = new \DateTime(); // \DateTime | End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
 $start_date = new \DateTime(); // \DateTime | Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
-$account = "account_example"; // string | Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
+$accounts = "accounts_example"; // string | Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
 $destination_address_country = "destination_address_country_example"; // string | Filter results by destination address country.
 $destination_address = "destination_address_example"; // string | Filter results by destination address.
 $message_format = "message_format_example"; // string | Filter results by message format.
@@ -49,7 +48,7 @@ $source_address = "source_address_example"; // string | Filter results by source
 $timezone = "timezone_example"; // string | The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. 'Australia/Melbourne'.
 
 try {
-    $result = $api_instance->getDeliveryReportsDetail($end_date, $start_date, $account, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
+    $result = $api_instance->getDeliveryReportsDetail($end_date, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MessagingReportsApi->getDeliveryReportsDetail: ', $e->getMessage(), PHP_EOL;
@@ -63,7 +62,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **end_date** | **\DateTime**| End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
  **start_date** | **\DateTime**| Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
- **account** | **string**| Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
+ **accounts** | **string**| Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
  **destination_address_country** | **string**| Filter results by destination address country. | [optional]
  **destination_address** | **string**| Filter results by destination address. | [optional]
  **message_format** | **string**| Filter results by message format. | [optional]
@@ -95,7 +94,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getDeliveryReportsSummary**
-> \MessageMedia\RESTAPI\Model\SummaryReport getDeliveryReportsSummary($end_date, $group_by, $start_date, $account, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $summary_by, $summary_field, $source_address_country, $source_address, $timezone)
+> \MessageMedia\RESTAPI\Model\SummaryReport getDeliveryReportsSummary($end_date, $group_by, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $summary_by, $summary_field, $source_address_country, $source_address, $timezone)
 
 Returns a summarised report of delivery reports
 
@@ -114,7 +113,7 @@ $api_instance = new MessageMedia\RESTAPI\Api\MessagingReportsApi();
 $end_date = new \DateTime(); // \DateTime | End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
 $group_by = "group_by_example"; // string | Field to group results set by
 $start_date = new \DateTime(); // \DateTime | Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
-$account = "account_example"; // string | Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
+$accounts = "accounts_example"; // string | Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
 $destination_address_country = "destination_address_country_example"; // string | Filter results by destination address country.
 $destination_address = "destination_address_example"; // string | Filter results by destination address.
 $message_format = "message_format_example"; // string | Filter results by message format.
@@ -129,7 +128,7 @@ $source_address = "source_address_example"; // string | Filter results by source
 $timezone = "timezone_example"; // string | The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. 'Australia/Melbourne'.
 
 try {
-    $result = $api_instance->getDeliveryReportsSummary($end_date, $group_by, $start_date, $account, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $summary_by, $summary_field, $source_address_country, $source_address, $timezone);
+    $result = $api_instance->getDeliveryReportsSummary($end_date, $group_by, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $summary_by, $summary_field, $source_address_country, $source_address, $timezone);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MessagingReportsApi->getDeliveryReportsSummary: ', $e->getMessage(), PHP_EOL;
@@ -144,7 +143,7 @@ Name | Type | Description  | Notes
  **end_date** | **\DateTime**| End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
  **group_by** | **string**| Field to group results set by |
  **start_date** | **\DateTime**| Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
- **account** | **string**| Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
+ **accounts** | **string**| Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
  **destination_address_country** | **string**| Filter results by destination address country. | [optional]
  **destination_address** | **string**| Filter results by destination address. | [optional]
  **message_format** | **string**| Filter results by message format. | [optional]
@@ -173,65 +172,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **getMetadataKeys**
-> \MessageMedia\RESTAPI\Model\MetadataKeysResponse getMetadataKeys($message_type, $start_date, $end_date, $account, $timezone)
-
-Returns a list of metadata keys
-
-Returns a list of all metadata keys used for the specified message type during the specified time. Results are limited to 100 keys.
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-// Configure HTTP basic authorization: basic
-MessageMedia\RESTAPI\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERNAME');
-MessageMedia\RESTAPI\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
-
-$api_instance = new MessageMedia\RESTAPI\Api\MessagingReportsApi();
-$message_type = "message_type_example"; // string | Message type. Possible values are sent messages, received messages and delivery receipts.
-$start_date = new \DateTime(); // \DateTime | Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
-$end_date = new \DateTime(); // \DateTime | End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
-$account = "account_example"; // string | Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
-$timezone = "timezone_example"; // string | The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. 'Australia/Melbourne'.
-
-try {
-    $result = $api_instance->getMetadataKeys($message_type, $start_date, $end_date, $account, $timezone);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling MessagingReportsApi->getMetadataKeys: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **message_type** | **string**| Message type. Possible values are sent messages, received messages and delivery receipts. |
- **start_date** | **\DateTime**| Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
- **end_date** | **\DateTime**| End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
- **account** | **string**| Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
- **timezone** | **string**| The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. &#39;Australia/Melbourne&#39;. | [optional]
-
-### Return type
-
-[**\MessageMedia\RESTAPI\Model\MetadataKeysResponse**](../Model/MetadataKeysResponse.md)
-
-### Authorization
-
-[basic](../../README.md#basic)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
 # **getReceivedMessagesDetail**
-> \MessageMedia\RESTAPI\Model\ReceivedMessages getReceivedMessagesDetail($end_date, $start_date, $account, $action, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone)
+> \MessageMedia\RESTAPI\Model\ReceivedMessages getReceivedMessagesDetail($end_date, $start_date, $accounts, $action, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone)
 
 Returns a list message received
 
@@ -249,7 +191,7 @@ MessageMedia\RESTAPI\Configuration::getDefaultConfiguration()->setPassword('YOUR
 $api_instance = new MessageMedia\RESTAPI\Api\MessagingReportsApi();
 $end_date = new \DateTime(); // \DateTime | End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
 $start_date = new \DateTime(); // \DateTime | Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
-$account = "account_example"; // string | Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
+$accounts = "accounts_example"; // string | Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
 $action = "action_example"; // string | Filter results by the action that was invoked for this message.
 $destination_address_country = "destination_address_country_example"; // string | Filter results by destination address country.
 $destination_address = "destination_address_example"; // string | Filter results by destination address.
@@ -265,7 +207,7 @@ $source_address = "source_address_example"; // string | Filter results by source
 $timezone = "timezone_example"; // string | The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. 'Australia/Melbourne'.
 
 try {
-    $result = $api_instance->getReceivedMessagesDetail($end_date, $start_date, $account, $action, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
+    $result = $api_instance->getReceivedMessagesDetail($end_date, $start_date, $accounts, $action, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MessagingReportsApi->getReceivedMessagesDetail: ', $e->getMessage(), PHP_EOL;
@@ -279,7 +221,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **end_date** | **\DateTime**| End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
  **start_date** | **\DateTime**| Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
- **account** | **string**| Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
+ **accounts** | **string**| Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
  **action** | **string**| Filter results by the action that was invoked for this message. | [optional]
  **destination_address_country** | **string**| Filter results by destination address country. | [optional]
  **destination_address** | **string**| Filter results by destination address. | [optional]
@@ -310,7 +252,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getReceivedMessagesSummary**
-> \MessageMedia\RESTAPI\Model\SummaryReport getReceivedMessagesSummary($end_date, $group_by, $start_date, $account, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $summary_by, $summary_field, $source_address_country, $source_address, $timezone)
+> \MessageMedia\RESTAPI\Model\SummaryReport getReceivedMessagesSummary($end_date, $group_by, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $summary_by, $summary_field, $source_address_country, $source_address, $timezone)
 
 Returns a summarised report of messages received
 
@@ -329,7 +271,7 @@ $api_instance = new MessageMedia\RESTAPI\Api\MessagingReportsApi();
 $end_date = new \DateTime(); // \DateTime | End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
 $group_by = "group_by_example"; // string | Field to group results set by
 $start_date = new \DateTime(); // \DateTime | Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
-$account = "account_example"; // string | Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
+$accounts = "accounts_example"; // string | Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
 $destination_address_country = "destination_address_country_example"; // string | Filter results by destination address country.
 $destination_address = "destination_address_example"; // string | Filter results by destination address.
 $message_format = "message_format_example"; // string | Filter results by message format.
@@ -342,7 +284,7 @@ $source_address = "source_address_example"; // string | Filter results by source
 $timezone = "timezone_example"; // string | The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. 'Australia/Melbourne'.
 
 try {
-    $result = $api_instance->getReceivedMessagesSummary($end_date, $group_by, $start_date, $account, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $summary_by, $summary_field, $source_address_country, $source_address, $timezone);
+    $result = $api_instance->getReceivedMessagesSummary($end_date, $group_by, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $summary_by, $summary_field, $source_address_country, $source_address, $timezone);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MessagingReportsApi->getReceivedMessagesSummary: ', $e->getMessage(), PHP_EOL;
@@ -357,7 +299,7 @@ Name | Type | Description  | Notes
  **end_date** | **\DateTime**| End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
  **group_by** | **string**| Field to group results set by |
  **start_date** | **\DateTime**| Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
- **account** | **string**| Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
+ **accounts** | **string**| Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
  **destination_address_country** | **string**| Filter results by destination address country. | [optional]
  **destination_address** | **string**| Filter results by destination address. | [optional]
  **message_format** | **string**| Filter results by message format. | [optional]
@@ -385,7 +327,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSentMessagesDetail**
-> \MessageMedia\RESTAPI\Model\SentMessages getSentMessagesDetail($end_date, $start_date, $account, $delivery_report, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone)
+> \MessageMedia\RESTAPI\Model\SentMessages getSentMessagesDetail($end_date, $start_date, $accounts, $delivery_report, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone)
 
 Returns a list of message sent
 
@@ -403,7 +345,7 @@ MessageMedia\RESTAPI\Configuration::getDefaultConfiguration()->setPassword('YOUR
 $api_instance = new MessageMedia\RESTAPI\Api\MessagingReportsApi();
 $end_date = new \DateTime(); // \DateTime | End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
 $start_date = new \DateTime(); // \DateTime | Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
-$account = "account_example"; // string | Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
+$accounts = "accounts_example"; // string | Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
 $delivery_report = true; // bool | Filter results by delivery report.
 $destination_address_country = "destination_address_country_example"; // string | Filter results by destination address country.
 $destination_address = "destination_address_example"; // string | Filter results by destination address.
@@ -421,7 +363,7 @@ $source_address = "source_address_example"; // string | Filter results by source
 $timezone = "timezone_example"; // string | The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. 'Australia/Melbourne'.
 
 try {
-    $result = $api_instance->getSentMessagesDetail($end_date, $start_date, $account, $delivery_report, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
+    $result = $api_instance->getSentMessagesDetail($end_date, $start_date, $accounts, $delivery_report, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MessagingReportsApi->getSentMessagesDetail: ', $e->getMessage(), PHP_EOL;
@@ -435,7 +377,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **end_date** | **\DateTime**| End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
  **start_date** | **\DateTime**| Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
- **account** | **string**| Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
+ **accounts** | **string**| Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
  **delivery_report** | **bool**| Filter results by delivery report. | [optional]
  **destination_address_country** | **string**| Filter results by destination address country. | [optional]
  **destination_address** | **string**| Filter results by destination address. | [optional]
@@ -468,7 +410,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSentMessagesSummary**
-> \MessageMedia\RESTAPI\Model\SummaryReport getSentMessagesSummary($end_date, $group_by, $start_date, $account, $delivery_report, $destination_address_country, $destination_address, $summary_by, $summary_field, $message_format, $metadata_key, $metadata_value, $status_code, $source_address_country, $source_address, $timezone)
+> \MessageMedia\RESTAPI\Model\SummaryReport getSentMessagesSummary($end_date, $group_by, $start_date, $accounts, $delivery_report, $destination_address_country, $destination_address, $summary_by, $summary_field, $message_format, $metadata_key, $metadata_value, $status_code, $source_address_country, $source_address, $timezone)
 
 Returns a summarised report of messages sent
 
@@ -487,7 +429,7 @@ $api_instance = new MessageMedia\RESTAPI\Api\MessagingReportsApi();
 $end_date = new \DateTime(); // \DateTime | End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
 $group_by = "group_by_example"; // string | Field to group results set by
 $start_date = new \DateTime(); // \DateTime | Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request.
-$account = "account_example"; // string | Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
+$accounts = "accounts_example"; // string | Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts.
 $delivery_report = true; // bool | Filter results by delivery report.
 $destination_address_country = "destination_address_country_example"; // string | Filter results by destination address country.
 $destination_address = "destination_address_example"; // string | Filter results by destination address.
@@ -502,7 +444,7 @@ $source_address = "source_address_example"; // string | Filter results by source
 $timezone = "timezone_example"; // string | The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. 'Australia/Melbourne'.
 
 try {
-    $result = $api_instance->getSentMessagesSummary($end_date, $group_by, $start_date, $account, $delivery_report, $destination_address_country, $destination_address, $summary_by, $summary_field, $message_format, $metadata_key, $metadata_value, $status_code, $source_address_country, $source_address, $timezone);
+    $result = $api_instance->getSentMessagesSummary($end_date, $group_by, $start_date, $accounts, $delivery_report, $destination_address_country, $destination_address, $summary_by, $summary_field, $message_format, $metadata_key, $metadata_value, $status_code, $source_address_country, $source_address, $timezone);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MessagingReportsApi->getSentMessagesSummary: ', $e->getMessage(), PHP_EOL;
@@ -517,7 +459,7 @@ Name | Type | Description  | Notes
  **end_date** | **\DateTime**| End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
  **group_by** | **string**| Field to group results set by |
  **start_date** | **\DateTime**| Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. |
- **account** | **string**| Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
+ **accounts** | **string**| Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. | [optional]
  **delivery_report** | **bool**| Filter results by delivery report. | [optional]
  **destination_address_country** | **string**| Filter results by destination address country. | [optional]
  **destination_address** | **string**| Filter results by destination address. | [optional]

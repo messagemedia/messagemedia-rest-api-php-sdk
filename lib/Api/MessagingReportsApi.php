@@ -102,7 +102,7 @@ class MessagingReportsApi
      *
      * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
      * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
      * @param string $message_format Filter results by message format. (optional)
@@ -120,9 +120,9 @@ class MessagingReportsApi
      * @return \MessageMedia\RESTAPI\Model\DeliveryReports
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getDeliveryReportsDetail($end_date, $start_date, $account = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getDeliveryReportsDetail($end_date, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
-        list($response) = $this->getDeliveryReportsDetailWithHttpInfo($end_date, $start_date, $account, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
+        list($response) = $this->getDeliveryReportsDetailWithHttpInfo($end_date, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
         return $response;
     }
 
@@ -133,7 +133,7 @@ class MessagingReportsApi
      *
      * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
      * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
      * @param string $message_format Filter results by message format. (optional)
@@ -151,7 +151,7 @@ class MessagingReportsApi
      * @return Array of \MessageMedia\RESTAPI\Model\DeliveryReports, HTTP status code, HTTP response headers (array of strings)
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getDeliveryReportsDetailWithHttpInfo($end_date, $start_date, $account = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getDeliveryReportsDetailWithHttpInfo($end_date, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
         // verify the required parameter 'end_date' is set
         if ($end_date === null) {
@@ -161,11 +161,11 @@ class MessagingReportsApi
         if ($start_date === null) {
             throw new \InvalidArgumentException('Missing the required parameter $start_date when calling getDeliveryReportsDetail');
         }
-        if (!is_null($account) && (strlen($account) > 200)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getDeliveryReportsDetail, must be smaller than or equal to 200.');
+        if (!is_null($accounts) && (strlen($accounts) > 200)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getDeliveryReportsDetail, must be smaller than or equal to 200.');
         }
-        if (!is_null($account) && (strlen($account) < 1)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getDeliveryReportsDetail, must be bigger than or equal to 1.');
+        if (!is_null($accounts) && (strlen($accounts) < 1)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getDeliveryReportsDetail, must be bigger than or equal to 1.');
         }
 
         if (!is_null($destination_address) && (strlen($destination_address) > 15)) {
@@ -234,8 +234,8 @@ class MessagingReportsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // query params
-        if ($account !== null) {
-            $queryParams['account'] = $this->apiClient->getSerializer()->toQueryValue($account);
+        if ($accounts !== null) {
+            $queryParams['accounts'] = $this->apiClient->getSerializer()->toQueryValue($accounts);
         }
         // query params
         if ($destination_address_country !== null) {
@@ -348,7 +348,7 @@ class MessagingReportsApi
      * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
      * @param string $group_by Field to group results set by (required)
      * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
      * @param string $message_format Filter results by message format. (optional)
@@ -364,9 +364,9 @@ class MessagingReportsApi
      * @return \MessageMedia\RESTAPI\Model\SummaryReport
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getDeliveryReportsSummary($end_date, $group_by, $start_date, $account = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $summary_by = null, $summary_field = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getDeliveryReportsSummary($end_date, $group_by, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $summary_by = null, $summary_field = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
-        list($response) = $this->getDeliveryReportsSummaryWithHttpInfo($end_date, $group_by, $start_date, $account, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $summary_by, $summary_field, $source_address_country, $source_address, $timezone);
+        list($response) = $this->getDeliveryReportsSummaryWithHttpInfo($end_date, $group_by, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $summary_by, $summary_field, $source_address_country, $source_address, $timezone);
         return $response;
     }
 
@@ -378,7 +378,7 @@ class MessagingReportsApi
      * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
      * @param string $group_by Field to group results set by (required)
      * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
      * @param string $message_format Filter results by message format. (optional)
@@ -394,7 +394,7 @@ class MessagingReportsApi
      * @return Array of \MessageMedia\RESTAPI\Model\SummaryReport, HTTP status code, HTTP response headers (array of strings)
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getDeliveryReportsSummaryWithHttpInfo($end_date, $group_by, $start_date, $account = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $summary_by = null, $summary_field = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getDeliveryReportsSummaryWithHttpInfo($end_date, $group_by, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $summary_by = null, $summary_field = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
         // verify the required parameter 'end_date' is set
         if ($end_date === null) {
@@ -408,11 +408,11 @@ class MessagingReportsApi
         if ($start_date === null) {
             throw new \InvalidArgumentException('Missing the required parameter $start_date when calling getDeliveryReportsSummary');
         }
-        if (!is_null($account) && (strlen($account) > 200)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getDeliveryReportsSummary, must be smaller than or equal to 200.');
+        if (!is_null($accounts) && (strlen($accounts) > 200)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getDeliveryReportsSummary, must be smaller than or equal to 200.');
         }
-        if (!is_null($account) && (strlen($account) < 1)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getDeliveryReportsSummary, must be bigger than or equal to 1.');
+        if (!is_null($accounts) && (strlen($accounts) < 1)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getDeliveryReportsSummary, must be bigger than or equal to 1.');
         }
 
         if (!is_null($destination_address) && (strlen($destination_address) > 15)) {
@@ -470,8 +470,8 @@ class MessagingReportsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // query params
-        if ($account !== null) {
-            $queryParams['account'] = $this->apiClient->getSerializer()->toQueryValue($account);
+        if ($accounts !== null) {
+            $queryParams['accounts'] = $this->apiClient->getSerializer()->toQueryValue($accounts);
         }
         // query params
         if ($destination_address_country !== null) {
@@ -573,141 +573,13 @@ class MessagingReportsApi
     }
 
     /**
-     * Operation getMetadataKeys
-     *
-     * Returns a list of metadata keys
-     *
-     * @param string $message_type Message type. Possible values are sent messages, received messages and delivery receipts. (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
-     * @param string $timezone The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. &#39;Australia/Melbourne&#39;. (optional)
-     * @return \MessageMedia\RESTAPI\Model\MetadataKeysResponse
-     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
-     */
-    public function getMetadataKeys($message_type, $start_date, $end_date, $account = null, $timezone = null)
-    {
-        list($response) = $this->getMetadataKeysWithHttpInfo($message_type, $start_date, $end_date, $account, $timezone);
-        return $response;
-    }
-
-    /**
-     * Operation getMetadataKeysWithHttpInfo
-     *
-     * Returns a list of metadata keys
-     *
-     * @param string $message_type Message type. Possible values are sent messages, received messages and delivery receipts. (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
-     * @param string $timezone The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. &#39;Australia/Melbourne&#39;. (optional)
-     * @return Array of \MessageMedia\RESTAPI\Model\MetadataKeysResponse, HTTP status code, HTTP response headers (array of strings)
-     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
-     */
-    public function getMetadataKeysWithHttpInfo($message_type, $start_date, $end_date, $account = null, $timezone = null)
-    {
-        // verify the required parameter 'message_type' is set
-        if ($message_type === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $message_type when calling getMetadataKeys');
-        }
-        // verify the required parameter 'start_date' is set
-        if ($start_date === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $start_date when calling getMetadataKeys');
-        }
-        // verify the required parameter 'end_date' is set
-        if ($end_date === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $end_date when calling getMetadataKeys');
-        }
-        if (!is_null($account) && (strlen($account) > 200)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getMetadataKeys, must be smaller than or equal to 200.');
-        }
-        if (!is_null($account) && (strlen($account) < 1)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getMetadataKeys, must be bigger than or equal to 1.');
-        }
-
-        // parse inputs
-        $resourcePath = "/reporting/{messageType}/metadata/keys";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
-
-        // query params
-        if ($start_date !== null) {
-            $queryParams['start_date'] = $this->apiClient->getSerializer()->toQueryValue($start_date);
-        }
-        // query params
-        if ($end_date !== null) {
-            $queryParams['end_date'] = $this->apiClient->getSerializer()->toQueryValue($end_date);
-        }
-        // query params
-        if ($account !== null) {
-            $queryParams['account'] = $this->apiClient->getSerializer()->toQueryValue($account);
-        }
-        // query params
-        if ($timezone !== null) {
-            $queryParams['timezone'] = $this->apiClient->getSerializer()->toQueryValue($timezone);
-        }
-        // path params
-        if ($message_type !== null) {
-            $resourcePath = str_replace(
-                "{" . "messageType" . "}",
-                $this->apiClient->getSerializer()->toPathValue($message_type),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // this endpoint requires HTTP basic authentication
-        if (strlen($this->apiClient->getConfig()->getUsername()) !== 0 or strlen($this->apiClient->getConfig()->getPassword()) !== 0) {
-            $headerParams['Authorization'] = 'Basic ' . base64_encode($this->apiClient->getConfig()->getUsername() . ":" . $this->apiClient->getConfig()->getPassword());
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\MessageMedia\RESTAPI\Model\MetadataKeysResponse',
-                '/reporting/{messageType}/metadata/keys'
-            );
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\MessageMedia\RESTAPI\Model\MetadataKeysResponse', $httpHeader), $statusCode, $httpHeader);
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\MessageMedia\RESTAPI\Model\MetadataKeysResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
      * Operation getReceivedMessagesDetail
      *
      * Returns a list message received
      *
      * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
      * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $action Filter results by the action that was invoked for this message. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
@@ -724,9 +596,9 @@ class MessagingReportsApi
      * @return \MessageMedia\RESTAPI\Model\ReceivedMessages
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getReceivedMessagesDetail($end_date, $start_date, $account = null, $action = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getReceivedMessagesDetail($end_date, $start_date, $accounts = null, $action = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
-        list($response) = $this->getReceivedMessagesDetailWithHttpInfo($end_date, $start_date, $account, $action, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
+        list($response) = $this->getReceivedMessagesDetailWithHttpInfo($end_date, $start_date, $accounts, $action, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
         return $response;
     }
 
@@ -737,7 +609,7 @@ class MessagingReportsApi
      *
      * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
      * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $action Filter results by the action that was invoked for this message. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
@@ -754,7 +626,7 @@ class MessagingReportsApi
      * @return Array of \MessageMedia\RESTAPI\Model\ReceivedMessages, HTTP status code, HTTP response headers (array of strings)
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getReceivedMessagesDetailWithHttpInfo($end_date, $start_date, $account = null, $action = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getReceivedMessagesDetailWithHttpInfo($end_date, $start_date, $accounts = null, $action = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
         // verify the required parameter 'end_date' is set
         if ($end_date === null) {
@@ -764,11 +636,11 @@ class MessagingReportsApi
         if ($start_date === null) {
             throw new \InvalidArgumentException('Missing the required parameter $start_date when calling getReceivedMessagesDetail');
         }
-        if (!is_null($account) && (strlen($account) > 200)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getReceivedMessagesDetail, must be smaller than or equal to 200.');
+        if (!is_null($accounts) && (strlen($accounts) > 200)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getReceivedMessagesDetail, must be smaller than or equal to 200.');
         }
-        if (!is_null($account) && (strlen($account) < 1)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getReceivedMessagesDetail, must be bigger than or equal to 1.');
+        if (!is_null($accounts) && (strlen($accounts) < 1)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getReceivedMessagesDetail, must be bigger than or equal to 1.');
         }
 
         if (!is_null($destination_address) && (strlen($destination_address) > 15)) {
@@ -823,8 +695,8 @@ class MessagingReportsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // query params
-        if ($account !== null) {
-            $queryParams['account'] = $this->apiClient->getSerializer()->toQueryValue($account);
+        if ($accounts !== null) {
+            $queryParams['accounts'] = $this->apiClient->getSerializer()->toQueryValue($accounts);
         }
         // query params
         if ($action !== null) {
@@ -933,7 +805,7 @@ class MessagingReportsApi
      * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
      * @param string $group_by Field to group results set by (required)
      * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
      * @param string $message_format Filter results by message format. (optional)
@@ -947,9 +819,9 @@ class MessagingReportsApi
      * @return \MessageMedia\RESTAPI\Model\SummaryReport
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getReceivedMessagesSummary($end_date, $group_by, $start_date, $account = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $summary_by = null, $summary_field = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getReceivedMessagesSummary($end_date, $group_by, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $summary_by = null, $summary_field = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
-        list($response) = $this->getReceivedMessagesSummaryWithHttpInfo($end_date, $group_by, $start_date, $account, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $summary_by, $summary_field, $source_address_country, $source_address, $timezone);
+        list($response) = $this->getReceivedMessagesSummaryWithHttpInfo($end_date, $group_by, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $summary_by, $summary_field, $source_address_country, $source_address, $timezone);
         return $response;
     }
 
@@ -961,7 +833,7 @@ class MessagingReportsApi
      * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
      * @param string $group_by Field to group results set by (required)
      * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
      * @param string $message_format Filter results by message format. (optional)
@@ -975,7 +847,7 @@ class MessagingReportsApi
      * @return Array of \MessageMedia\RESTAPI\Model\SummaryReport, HTTP status code, HTTP response headers (array of strings)
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getReceivedMessagesSummaryWithHttpInfo($end_date, $group_by, $start_date, $account = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $summary_by = null, $summary_field = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getReceivedMessagesSummaryWithHttpInfo($end_date, $group_by, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $summary_by = null, $summary_field = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
         // verify the required parameter 'end_date' is set
         if ($end_date === null) {
@@ -989,11 +861,11 @@ class MessagingReportsApi
         if ($start_date === null) {
             throw new \InvalidArgumentException('Missing the required parameter $start_date when calling getReceivedMessagesSummary');
         }
-        if (!is_null($account) && (strlen($account) > 200)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getReceivedMessagesSummary, must be smaller than or equal to 200.');
+        if (!is_null($accounts) && (strlen($accounts) > 200)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getReceivedMessagesSummary, must be smaller than or equal to 200.');
         }
-        if (!is_null($account) && (strlen($account) < 1)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getReceivedMessagesSummary, must be bigger than or equal to 1.');
+        if (!is_null($accounts) && (strlen($accounts) < 1)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getReceivedMessagesSummary, must be bigger than or equal to 1.');
         }
 
         if (!is_null($destination_address) && (strlen($destination_address) > 15)) {
@@ -1037,8 +909,8 @@ class MessagingReportsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // query params
-        if ($account !== null) {
-            $queryParams['account'] = $this->apiClient->getSerializer()->toQueryValue($account);
+        if ($accounts !== null) {
+            $queryParams['accounts'] = $this->apiClient->getSerializer()->toQueryValue($accounts);
         }
         // query params
         if ($destination_address_country !== null) {
@@ -1138,7 +1010,7 @@ class MessagingReportsApi
      *
      * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
      * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param bool $delivery_report Filter results by delivery report. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
@@ -1157,9 +1029,9 @@ class MessagingReportsApi
      * @return \MessageMedia\RESTAPI\Model\SentMessages
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getSentMessagesDetail($end_date, $start_date, $account = null, $delivery_report = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getSentMessagesDetail($end_date, $start_date, $accounts = null, $delivery_report = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
-        list($response) = $this->getSentMessagesDetailWithHttpInfo($end_date, $start_date, $account, $delivery_report, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
+        list($response) = $this->getSentMessagesDetailWithHttpInfo($end_date, $start_date, $accounts, $delivery_report, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
         return $response;
     }
 
@@ -1170,7 +1042,7 @@ class MessagingReportsApi
      *
      * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
      * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param bool $delivery_report Filter results by delivery report. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
@@ -1189,7 +1061,7 @@ class MessagingReportsApi
      * @return Array of \MessageMedia\RESTAPI\Model\SentMessages, HTTP status code, HTTP response headers (array of strings)
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getSentMessagesDetailWithHttpInfo($end_date, $start_date, $account = null, $delivery_report = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getSentMessagesDetailWithHttpInfo($end_date, $start_date, $accounts = null, $delivery_report = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
         // verify the required parameter 'end_date' is set
         if ($end_date === null) {
@@ -1199,11 +1071,11 @@ class MessagingReportsApi
         if ($start_date === null) {
             throw new \InvalidArgumentException('Missing the required parameter $start_date when calling getSentMessagesDetail');
         }
-        if (!is_null($account) && (strlen($account) > 200)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getSentMessagesDetail, must be smaller than or equal to 200.');
+        if (!is_null($accounts) && (strlen($accounts) > 200)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getSentMessagesDetail, must be smaller than or equal to 200.');
         }
-        if (!is_null($account) && (strlen($account) < 1)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getSentMessagesDetail, must be bigger than or equal to 1.');
+        if (!is_null($accounts) && (strlen($accounts) < 1)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getSentMessagesDetail, must be bigger than or equal to 1.');
         }
 
         if (!is_null($destination_address) && (strlen($destination_address) > 15)) {
@@ -1272,8 +1144,8 @@ class MessagingReportsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // query params
-        if ($account !== null) {
-            $queryParams['account'] = $this->apiClient->getSerializer()->toQueryValue($account);
+        if ($accounts !== null) {
+            $queryParams['accounts'] = $this->apiClient->getSerializer()->toQueryValue($accounts);
         }
         // query params
         if ($delivery_report !== null) {
@@ -1390,7 +1262,7 @@ class MessagingReportsApi
      * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
      * @param string $group_by Field to group results set by (required)
      * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param bool $delivery_report Filter results by delivery report. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
@@ -1406,9 +1278,9 @@ class MessagingReportsApi
      * @return \MessageMedia\RESTAPI\Model\SummaryReport
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getSentMessagesSummary($end_date, $group_by, $start_date, $account = null, $delivery_report = null, $destination_address_country = null, $destination_address = null, $summary_by = null, $summary_field = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getSentMessagesSummary($end_date, $group_by, $start_date, $accounts = null, $delivery_report = null, $destination_address_country = null, $destination_address = null, $summary_by = null, $summary_field = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
-        list($response) = $this->getSentMessagesSummaryWithHttpInfo($end_date, $group_by, $start_date, $account, $delivery_report, $destination_address_country, $destination_address, $summary_by, $summary_field, $message_format, $metadata_key, $metadata_value, $status_code, $source_address_country, $source_address, $timezone);
+        list($response) = $this->getSentMessagesSummaryWithHttpInfo($end_date, $group_by, $start_date, $accounts, $delivery_report, $destination_address_country, $destination_address, $summary_by, $summary_field, $message_format, $metadata_key, $metadata_value, $status_code, $source_address_country, $source_address, $timezone);
         return $response;
     }
 
@@ -1420,7 +1292,7 @@ class MessagingReportsApi
      * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
      * @param string $group_by Field to group results set by (required)
      * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $account Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param bool $delivery_report Filter results by delivery report. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
@@ -1436,7 +1308,7 @@ class MessagingReportsApi
      * @return Array of \MessageMedia\RESTAPI\Model\SummaryReport, HTTP status code, HTTP response headers (array of strings)
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getSentMessagesSummaryWithHttpInfo($end_date, $group_by, $start_date, $account = null, $delivery_report = null, $destination_address_country = null, $destination_address = null, $summary_by = null, $summary_field = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getSentMessagesSummaryWithHttpInfo($end_date, $group_by, $start_date, $accounts = null, $delivery_report = null, $destination_address_country = null, $destination_address = null, $summary_by = null, $summary_field = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
         // verify the required parameter 'end_date' is set
         if ($end_date === null) {
@@ -1450,11 +1322,11 @@ class MessagingReportsApi
         if ($start_date === null) {
             throw new \InvalidArgumentException('Missing the required parameter $start_date when calling getSentMessagesSummary');
         }
-        if (!is_null($account) && (strlen($account) > 200)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getSentMessagesSummary, must be smaller than or equal to 200.');
+        if (!is_null($accounts) && (strlen($accounts) > 200)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getSentMessagesSummary, must be smaller than or equal to 200.');
         }
-        if (!is_null($account) && (strlen($account) < 1)) {
-            throw new \InvalidArgumentException('invalid length for "$account" when calling MessagingReportsApi.getSentMessagesSummary, must be bigger than or equal to 1.');
+        if (!is_null($accounts) && (strlen($accounts) < 1)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getSentMessagesSummary, must be bigger than or equal to 1.');
         }
 
         if (!is_null($destination_address) && (strlen($destination_address) > 15)) {
@@ -1505,8 +1377,8 @@ class MessagingReportsApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // query params
-        if ($account !== null) {
-            $queryParams['account'] = $this->apiClient->getSerializer()->toQueryValue($account);
+        if ($accounts !== null) {
+            $queryParams['accounts'] = $this->apiClient->getSerializer()->toQueryValue($accounts);
         }
         // query params
         if ($delivery_report !== null) {

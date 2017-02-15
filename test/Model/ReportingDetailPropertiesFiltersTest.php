@@ -176,12 +176,4 @@ class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /**
-     * Test attribute "accounts"
-     */
-    public function testPropertyAccounts()
-    {
-
-    }
-
 }

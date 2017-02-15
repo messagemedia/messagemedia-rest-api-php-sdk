@@ -3,7 +3,7 @@ Australia's Leading Messaging Solutions for Business and Enterprise.
 
 
 - API version: 1.0.0
-- Build date: 2017-02-08T06:10:51.776Z
+- Build date: 2017-02-15T06:01:02.231Z
 For more information, please visit [https://www.messagemedia.com/contact-us](https://www.messagemedia.com/contact-us)
 
 ## Requirements
@@ -85,7 +85,6 @@ Class | Method | HTTP request | Description
 *MessagingApi* | [**updateMessageStatus**](docs/Api/MessagingApi.md#updatemessagestatus) | **PUT** /messages/{messageId} | Cancel a scheduled message
 *MessagingReportsApi* | [**getDeliveryReportsDetail**](docs/Api/MessagingReportsApi.md#getdeliveryreportsdetail) | **GET** /reporting/delivery_reports/detail | Returns a list of delivery reports
 *MessagingReportsApi* | [**getDeliveryReportsSummary**](docs/Api/MessagingReportsApi.md#getdeliveryreportssummary) | **GET** /reporting/delivery_reports/summary | Returns a summarised report of delivery reports
-*MessagingReportsApi* | [**getMetadataKeys**](docs/Api/MessagingReportsApi.md#getmetadatakeys) | **GET** /reporting/{messageType}/metadata/keys | Returns a list of metadata keys
 *MessagingReportsApi* | [**getReceivedMessagesDetail**](docs/Api/MessagingReportsApi.md#getreceivedmessagesdetail) | **GET** /reporting/received_messages/detail | Returns a list message received
 *MessagingReportsApi* | [**getReceivedMessagesSummary**](docs/Api/MessagingReportsApi.md#getreceivedmessagessummary) | **GET** /reporting/received_messages/summary | Returns a summarised report of messages received
 *MessagingReportsApi* | [**getSentMessagesDetail**](docs/Api/MessagingReportsApi.md#getsentmessagesdetail) | **GET** /reporting/sent_messages/detail | Returns a list of message sent
@@ -102,8 +101,6 @@ Class | Method | HTTP request | Description
  - [InlineResponse400](docs/Model/InlineResponse400.md)
  - [MessageStatusCode](docs/Model/MessageStatusCode.md)
  - [Messages](docs/Model/Messages.md)
- - [MetadataKeysResponse](docs/Model/MetadataKeysResponse.md)
- - [MetadataKeysResponseProperties](docs/Model/MetadataKeysResponseProperties.md)
  - [NewMessage](docs/Model/NewMessage.md)
  - [Pagination](docs/Model/Pagination.md)
  - [ReceivedMessage](docs/Model/ReceivedMessage.md)

@@ -69,8 +69,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
         'source_address' => 'string',
         'status_code' => 'string',
         'status' => 'string',
-        'action' => 'string',
-        'accounts' => 'string[]'
+        'action' => 'string'
     );
 
     public static function types()
@@ -93,8 +92,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
         'source_address' => 'source_address',
         'status_code' => 'status_code',
         'status' => 'status',
-        'action' => 'action',
-        'accounts' => 'accounts'
+        'action' => 'action'
     );
 
     public static function attributeMap()
@@ -117,8 +115,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
         'source_address' => 'setSourceAddress',
         'status_code' => 'setStatusCode',
         'status' => 'setStatus',
-        'action' => 'setAction',
-        'accounts' => 'setAccounts'
+        'action' => 'setAction'
     );
 
     public static function setters()
@@ -141,8 +138,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
         'source_address' => 'getSourceAddress',
         'status_code' => 'getStatusCode',
         'status' => 'getStatus',
-        'action' => 'getAction',
-        'accounts' => 'getAccounts'
+        'action' => 'getAction'
     );
 
     public static function getters()
@@ -177,7 +173,6 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
         $this->container['status_code'] = isset($data['status_code']) ? $data['status_code'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['action'] = isset($data['action']) ? $data['action'] : null;
-        $this->container['accounts'] = isset($data['accounts']) ? $data['accounts'] : null;
     }
 
     /**
@@ -430,27 +425,6 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
     public function setAction($action)
     {
         $this->container['action'] = $action;
-
-        return $this;
-    }
-
-    /**
-     * Gets accounts
-     * @return string[]
-     */
-    public function getAccounts()
-    {
-        return $this->container['accounts'];
-    }
-
-    /**
-     * Sets accounts
-     * @param string[] $accounts List of accounts that were used to generate this report
-     * @return $this
-     */
-    public function setAccounts($accounts)
-    {
-        $this->container['accounts'] = $accounts;
 
         return $this;
     }
