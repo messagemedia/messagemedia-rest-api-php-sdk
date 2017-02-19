@@ -3,7 +3,7 @@ Australia's Leading Messaging Solutions for Business and Enterprise.
 
 
 - API version: 1.0.0
-- Build date: 2017-02-15T06:01:02.231Z
+- Build date: 2017-02-19T22:50:13.529Z
 For more information, please visit [https://www.messagemedia.com/contact-us](https://www.messagemedia.com/contact-us)
 
 ## Requirements
@@ -83,24 +83,54 @@ Class | Method | HTTP request | Description
 *MessagingApi* | [**getMessageStatus**](docs/Api/MessagingApi.md#getmessagestatus) | **GET** /messages/{messageId} | Get the status of a submitted message
 *MessagingApi* | [**sendMessages**](docs/Api/MessagingApi.md#sendmessages) | **POST** /messages | Send one or more messages
 *MessagingApi* | [**updateMessageStatus**](docs/Api/MessagingApi.md#updatemessagestatus) | **PUT** /messages/{messageId} | Cancel a scheduled message
+*MessagingReportsApi* | [**getAsyncReportById**](docs/Api/MessagingReportsApi.md#getasyncreportbyid) | **GET** /reporting/async_reports/{report_id} | Lists an asynchronous report.
+*MessagingReportsApi* | [**getAsyncReportDataById**](docs/Api/MessagingReportsApi.md#getasyncreportdatabyid) | **GET** /reporting/async_reports/{report_id}/data | Gets the data of an asynchronous report.
+*MessagingReportsApi* | [**getAsyncReports**](docs/Api/MessagingReportsApi.md#getasyncreports) | **GET** /reporting/async_reports | Gets a single asynchronous report.
 *MessagingReportsApi* | [**getDeliveryReportsDetail**](docs/Api/MessagingReportsApi.md#getdeliveryreportsdetail) | **GET** /reporting/delivery_reports/detail | Returns a list of delivery reports
 *MessagingReportsApi* | [**getDeliveryReportsSummary**](docs/Api/MessagingReportsApi.md#getdeliveryreportssummary) | **GET** /reporting/delivery_reports/summary | Returns a summarised report of delivery reports
+*MessagingReportsApi* | [**getMetadataKeys**](docs/Api/MessagingReportsApi.md#getmetadatakeys) | **GET** /reporting/{messageType}/metadata/keys | Returns a list of metadata keys
 *MessagingReportsApi* | [**getReceivedMessagesDetail**](docs/Api/MessagingReportsApi.md#getreceivedmessagesdetail) | **GET** /reporting/received_messages/detail | Returns a list message received
 *MessagingReportsApi* | [**getReceivedMessagesSummary**](docs/Api/MessagingReportsApi.md#getreceivedmessagessummary) | **GET** /reporting/received_messages/summary | Returns a summarised report of messages received
 *MessagingReportsApi* | [**getSentMessagesDetail**](docs/Api/MessagingReportsApi.md#getsentmessagesdetail) | **GET** /reporting/sent_messages/detail | Returns a list of message sent
 *MessagingReportsApi* | [**getSentMessagesSummary**](docs/Api/MessagingReportsApi.md#getsentmessagessummary) | **GET** /reporting/sent_messages/summary | Returns a summarised report of messages sent
+*MessagingReportsApi* | [**submitAsyncDeliveryReportsDetail**](docs/Api/MessagingReportsApi.md#submitasyncdeliveryreportsdetail) | **POST** /reporting/delivery_reports/detail/async | Submits a request to generate an async detail report
+*MessagingReportsApi* | [**submitDeliveryReportsSummary**](docs/Api/MessagingReportsApi.md#submitdeliveryreportssummary) | **POST** /reporting/delivery_reports/summary/async | Submits a summarised report of delivery reports
+*MessagingReportsApi* | [**submitReceivedMessagesDetail**](docs/Api/MessagingReportsApi.md#submitreceivedmessagesdetail) | **POST** /reporting/received_messages/detail/async | Submits a request to generate an async detail report
+*MessagingReportsApi* | [**submitReceivedMessagesSummary**](docs/Api/MessagingReportsApi.md#submitreceivedmessagessummary) | **POST** /reporting/received_messages/summary/async | Submits a summarised report of received messages
+*MessagingReportsApi* | [**submitSentMessagesDetail**](docs/Api/MessagingReportsApi.md#submitsentmessagesdetail) | **POST** /reporting/sent_messages/detail/async | Submits a request to generate an async detail report
+*MessagingReportsApi* | [**submitSentMessagesSummary**](docs/Api/MessagingReportsApi.md#submitsentmessagessummary) | **POST** /reporting/sent_messages/summary/async | Submits a summarised report of sent messages
 *RepliesApi* | [**checkReplies**](docs/Api/RepliesApi.md#checkreplies) | **GET** /replies | Check replies
 *RepliesApi* | [**confirmReplies**](docs/Api/RepliesApi.md#confirmreplies) | **POST** /replies/confirmed | Confirm replies as received
 
 
 ## Documentation For Models
 
+ - [AccountsBody](docs/Model/AccountsBody.md)
+ - [ActionBody](docs/Model/ActionBody.md)
+ - [AsyncDeliveryReportDetailRequest](docs/Model/AsyncDeliveryReportDetailRequest.md)
+ - [AsyncDeliveryReportsSummaryRequest](docs/Model/AsyncDeliveryReportsSummaryRequest.md)
+ - [AsyncDeliverySentMessagesRequest](docs/Model/AsyncDeliverySentMessagesRequest.md)
+ - [AsyncReceivedMessagesDetailRequest](docs/Model/AsyncReceivedMessagesDetailRequest.md)
+ - [AsyncReceivedMessagesSummaryRequest](docs/Model/AsyncReceivedMessagesSummaryRequest.md)
+ - [AsyncReport](docs/Model/AsyncReport.md)
+ - [AsyncReportResponse](docs/Model/AsyncReportResponse.md)
+ - [AsyncSentMessagesDetailRequest](docs/Model/AsyncSentMessagesDetailRequest.md)
  - [DeliveryReport](docs/Model/DeliveryReport.md)
+ - [DeliveryReportBody](docs/Model/DeliveryReportBody.md)
  - [DeliveryReportId](docs/Model/DeliveryReportId.md)
  - [DeliveryReports](docs/Model/DeliveryReports.md)
+ - [DestinationAddressBody](docs/Model/DestinationAddressBody.md)
+ - [DestinationAddressCountryBody](docs/Model/DestinationAddressCountryBody.md)
+ - [EndDateBody](docs/Model/EndDateBody.md)
+ - [InlineResponse200](docs/Model/InlineResponse200.md)
  - [InlineResponse400](docs/Model/InlineResponse400.md)
+ - [MessageFormatBody](docs/Model/MessageFormatBody.md)
  - [MessageStatusCode](docs/Model/MessageStatusCode.md)
  - [Messages](docs/Model/Messages.md)
+ - [MetadataKeyBody](docs/Model/MetadataKeyBody.md)
+ - [MetadataKeysResponse](docs/Model/MetadataKeysResponse.md)
+ - [MetadataKeysResponseProperties](docs/Model/MetadataKeysResponseProperties.md)
+ - [MetadataValueBody](docs/Model/MetadataValueBody.md)
  - [NewMessage](docs/Model/NewMessage.md)
  - [Pagination](docs/Model/Pagination.md)
  - [ReceivedMessage](docs/Model/ReceivedMessage.md)
@@ -116,12 +146,21 @@ Class | Method | HTTP request | Description
  - [Reports](docs/Model/Reports.md)
  - [SentMessage](docs/Model/SentMessage.md)
  - [SentMessages](docs/Model/SentMessages.md)
+ - [SortDirectionBody](docs/Model/SortDirectionBody.md)
+ - [SourceAddressBody](docs/Model/SourceAddressBody.md)
+ - [SourceAddressCountryBody](docs/Model/SourceAddressCountryBody.md)
+ - [StartDateBody](docs/Model/StartDateBody.md)
  - [Status](docs/Model/Status.md)
+ - [StatusBody](docs/Model/StatusBody.md)
+ - [StatusCodeBody](docs/Model/StatusCodeBody.md)
  - [SubmittedMessage](docs/Model/SubmittedMessage.md)
  - [SubmittedMessages](docs/Model/SubmittedMessages.md)
+ - [SummaryByBody](docs/Model/SummaryByBody.md)
+ - [SummaryFieldBody](docs/Model/SummaryFieldBody.md)
  - [SummaryReport](docs/Model/SummaryReport.md)
  - [SummaryReportData](docs/Model/SummaryReportData.md)
  - [SummaryReportProperties](docs/Model/SummaryReportProperties.md)
+ - [TimezoneBody](docs/Model/TimezoneBody.md)
 
 
 ## Documentation For Authorization

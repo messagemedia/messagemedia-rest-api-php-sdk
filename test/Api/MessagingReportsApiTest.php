@@ -83,6 +83,39 @@ class MessagingReportsApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for getAsyncReportById
+     *
+     * Lists an asynchronous report..
+     *
+     */
+    public function testGetAsyncReportById()
+    {
+
+    }
+
+    /**
+     * Test case for getAsyncReportDataById
+     *
+     * Gets the data of an asynchronous report..
+     *
+     */
+    public function testGetAsyncReportDataById()
+    {
+
+    }
+
+    /**
+     * Test case for getAsyncReports
+     *
+     * Gets a single asynchronous report..
+     *
+     */
+    public function testGetAsyncReports()
+    {
+
+    }
+
+    /**
      * Test case for getDeliveryReportsDetail
      *
      * Returns a list of delivery reports.
@@ -100,6 +133,17 @@ class MessagingReportsApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function testGetDeliveryReportsSummary()
+    {
+
+    }
+
+    /**
+     * Test case for getMetadataKeys
+     *
+     * Returns a list of metadata keys.
+     *
+     */
+    public function testGetMetadataKeys()
     {
 
     }
@@ -144,6 +188,72 @@ class MessagingReportsApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function testGetSentMessagesSummary()
+    {
+
+    }
+
+    /**
+     * Test case for submitAsyncDeliveryReportsDetail
+     *
+     * Submits a request to generate an async detail report.
+     *
+     */
+    public function testSubmitAsyncDeliveryReportsDetail()
+    {
+
+    }
+
+    /**
+     * Test case for submitDeliveryReportsSummary
+     *
+     * Submits a summarised report of delivery reports.
+     *
+     */
+    public function testSubmitDeliveryReportsSummary()
+    {
+
+    }
+
+    /**
+     * Test case for submitReceivedMessagesDetail
+     *
+     * Submits a request to generate an async detail report.
+     *
+     */
+    public function testSubmitReceivedMessagesDetail()
+    {
+
+    }
+
+    /**
+     * Test case for submitReceivedMessagesSummary
+     *
+     * Submits a summarised report of received messages.
+     *
+     */
+    public function testSubmitReceivedMessagesSummary()
+    {
+
+    }
+
+    /**
+     * Test case for submitSentMessagesDetail
+     *
+     * Submits a request to generate an async detail report.
+     *
+     */
+    public function testSubmitSentMessagesDetail()
+    {
+
+    }
+
+    /**
+     * Test case for submitSentMessagesSummary
+     *
+     * Submits a summarised report of sent messages.
+     *
+     */
+    public function testSubmitSentMessagesSummary()
     {
 
     }

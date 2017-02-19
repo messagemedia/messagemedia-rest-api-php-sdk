@@ -1,6 +1,6 @@
 <?php
 /**
- * ReportingDetailPropertiesFiltersTest
+ * AsyncSentMessagesDetailRequestTest
  *
  * PHP version 5
  *
@@ -37,15 +37,15 @@
 namespace MessageMedia\RESTAPI;
 
 /**
- * ReportingDetailPropertiesFiltersTest Class Doc Comment
+ * AsyncSentMessagesDetailRequestTest Class Doc Comment
  *
  * @category    Class */
-// * @description ReportingDetailPropertiesFilters
+// * @description AsyncSentMessagesDetailRequest
 /**
  * @package     MessageMedia\RESTAPI
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  */
-class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
+class AsyncSentMessagesDetailRequestTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -81,17 +81,57 @@ class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "ReportingDetailPropertiesFilters"
+     * Test "AsyncSentMessagesDetailRequest"
      */
-    public function testReportingDetailPropertiesFilters()
+    public function testAsyncSentMessagesDetailRequest()
     {
 
     }
 
     /**
-     * Test attribute "delivery_report"
+     * Test attribute "start_date"
      */
-    public function testPropertyDeliveryReport()
+    public function testPropertyStartDate()
+    {
+
+    }
+
+    /**
+     * Test attribute "end_date"
+     */
+    public function testPropertyEndDate()
+    {
+
+    }
+
+    /**
+     * Test attribute "sort_by"
+     */
+    public function testPropertySortBy()
+    {
+
+    }
+
+    /**
+     * Test attribute "sort_direction"
+     */
+    public function testPropertySortDirection()
+    {
+
+    }
+
+    /**
+     * Test attribute "timezone"
+     */
+    public function testPropertyTimezone()
+    {
+
+    }
+
+    /**
+     * Test attribute "accounts"
+     */
+    public function testPropertyAccounts()
     {
 
     }
@@ -153,14 +193,6 @@ class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "status_code"
-     */
-    public function testPropertyStatusCode()
-    {
-
-    }
-
-    /**
      * Test attribute "status"
      */
     public function testPropertyStatus()
@@ -169,17 +201,17 @@ class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "action"
+     * Test attribute "status_code"
      */
-    public function testPropertyAction()
+    public function testPropertyStatusCode()
     {
 
     }
 
     /**
-     * Test attribute "accounts"
+     * Test attribute "delivery_report"
      */
-    public function testPropertyAccounts()
+    public function testPropertyDeliveryReport()
     {
 
     }

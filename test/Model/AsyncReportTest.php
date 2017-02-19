@@ -1,6 +1,6 @@
 <?php
 /**
- * ReportingDetailPropertiesFiltersTest
+ * AsyncReportTest
  *
  * PHP version 5
  *
@@ -37,15 +37,15 @@
 namespace MessageMedia\RESTAPI;
 
 /**
- * ReportingDetailPropertiesFiltersTest Class Doc Comment
+ * AsyncReportTest Class Doc Comment
  *
  * @category    Class */
-// * @description ReportingDetailPropertiesFilters
+// * @description AsyncReport
 /**
  * @package     MessageMedia\RESTAPI
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  */
-class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
+class AsyncReportTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -81,105 +81,57 @@ class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "ReportingDetailPropertiesFilters"
+     * Test "AsyncReport"
      */
-    public function testReportingDetailPropertiesFilters()
+    public function testAsyncReport()
     {
 
     }
 
     /**
-     * Test attribute "delivery_report"
+     * Test attribute "id"
      */
-    public function testPropertyDeliveryReport()
+    public function testPropertyId()
     {
 
     }
 
     /**
-     * Test attribute "destination_address_country"
+     * Test attribute "message_type"
      */
-    public function testPropertyDestinationAddressCountry()
+    public function testPropertyMessageType()
     {
 
     }
 
     /**
-     * Test attribute "destination_address"
+     * Test attribute "type"
      */
-    public function testPropertyDestinationAddress()
+    public function testPropertyType()
     {
 
     }
 
     /**
-     * Test attribute "message_format"
+     * Test attribute "report_status"
      */
-    public function testPropertyMessageFormat()
+    public function testPropertyReportStatus()
     {
 
     }
 
     /**
-     * Test attribute "metadata_key"
+     * Test attribute "created_datetime"
      */
-    public function testPropertyMetadataKey()
+    public function testPropertyCreatedDatetime()
     {
 
     }
 
     /**
-     * Test attribute "metadata_value"
+     * Test attribute "last_modified_datetime"
      */
-    public function testPropertyMetadataValue()
-    {
-
-    }
-
-    /**
-     * Test attribute "source_address_country"
-     */
-    public function testPropertySourceAddressCountry()
-    {
-
-    }
-
-    /**
-     * Test attribute "source_address"
-     */
-    public function testPropertySourceAddress()
-    {
-
-    }
-
-    /**
-     * Test attribute "status_code"
-     */
-    public function testPropertyStatusCode()
-    {
-
-    }
-
-    /**
-     * Test attribute "status"
-     */
-    public function testPropertyStatus()
-    {
-
-    }
-
-    /**
-     * Test attribute "action"
-     */
-    public function testPropertyAction()
-    {
-
-    }
-
-    /**
-     * Test attribute "accounts"
-     */
-    public function testPropertyAccounts()
+    public function testPropertyLastModifiedDatetime()
     {
 
     }

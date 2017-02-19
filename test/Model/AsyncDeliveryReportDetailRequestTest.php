@@ -1,6 +1,6 @@
 <?php
 /**
- * ReportingDetailPropertiesFiltersTest
+ * AsyncDeliveryReportDetailRequestTest
  *
  * PHP version 5
  *
@@ -37,15 +37,15 @@
 namespace MessageMedia\RESTAPI;
 
 /**
- * ReportingDetailPropertiesFiltersTest Class Doc Comment
+ * AsyncDeliveryReportDetailRequestTest Class Doc Comment
  *
  * @category    Class */
-// * @description ReportingDetailPropertiesFilters
+// * @description AsyncDeliveryReportDetailRequest
 /**
  * @package     MessageMedia\RESTAPI
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  */
-class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
+class AsyncDeliveryReportDetailRequestTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -81,17 +81,57 @@ class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "ReportingDetailPropertiesFilters"
+     * Test "AsyncDeliveryReportDetailRequest"
      */
-    public function testReportingDetailPropertiesFilters()
+    public function testAsyncDeliveryReportDetailRequest()
     {
 
     }
 
     /**
-     * Test attribute "delivery_report"
+     * Test attribute "start_date"
      */
-    public function testPropertyDeliveryReport()
+    public function testPropertyStartDate()
+    {
+
+    }
+
+    /**
+     * Test attribute "end_date"
+     */
+    public function testPropertyEndDate()
+    {
+
+    }
+
+    /**
+     * Test attribute "sort_by"
+     */
+    public function testPropertySortBy()
+    {
+
+    }
+
+    /**
+     * Test attribute "sort_direction"
+     */
+    public function testPropertySortDirection()
+    {
+
+    }
+
+    /**
+     * Test attribute "timezone"
+     */
+    public function testPropertyTimezone()
+    {
+
+    }
+
+    /**
+     * Test attribute "accounts"
+     */
+    public function testPropertyAccounts()
     {
 
     }
@@ -137,22 +177,6 @@ class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "source_address_country"
-     */
-    public function testPropertySourceAddressCountry()
-    {
-
-    }
-
-    /**
-     * Test attribute "source_address"
-     */
-    public function testPropertySourceAddress()
-    {
-
-    }
-
-    /**
      * Test attribute "status_code"
      */
     public function testPropertyStatusCode()
@@ -169,17 +193,17 @@ class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "action"
+     * Test attribute "source_address_country"
      */
-    public function testPropertyAction()
+    public function testPropertySourceAddressCountry()
     {
 
     }
 
     /**
-     * Test attribute "accounts"
+     * Test attribute "source_address"
      */
-    public function testPropertyAccounts()
+    public function testPropertySourceAddress()
     {
 
     }

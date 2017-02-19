@@ -1,6 +1,6 @@
 <?php
 /**
- * ReportingDetailPropertiesFiltersTest
+ * AsyncDeliverySentMessagesRequestTest
  *
  * PHP version 5
  *
@@ -37,15 +37,15 @@
 namespace MessageMedia\RESTAPI;
 
 /**
- * ReportingDetailPropertiesFiltersTest Class Doc Comment
+ * AsyncDeliverySentMessagesRequestTest Class Doc Comment
  *
  * @category    Class */
-// * @description ReportingDetailPropertiesFilters
+// * @description AsyncDeliverySentMessagesRequest
 /**
  * @package     MessageMedia\RESTAPI
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  */
-class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
+class AsyncDeliverySentMessagesRequestTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -81,17 +81,65 @@ class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "ReportingDetailPropertiesFilters"
+     * Test "AsyncDeliverySentMessagesRequest"
      */
-    public function testReportingDetailPropertiesFilters()
+    public function testAsyncDeliverySentMessagesRequest()
     {
 
     }
 
     /**
-     * Test attribute "delivery_report"
+     * Test attribute "summary_by"
      */
-    public function testPropertyDeliveryReport()
+    public function testPropertySummaryBy()
+    {
+
+    }
+
+    /**
+     * Test attribute "summary_field"
+     */
+    public function testPropertySummaryField()
+    {
+
+    }
+
+    /**
+     * Test attribute "group_by"
+     */
+    public function testPropertyGroupBy()
+    {
+
+    }
+
+    /**
+     * Test attribute "start_date"
+     */
+    public function testPropertyStartDate()
+    {
+
+    }
+
+    /**
+     * Test attribute "end_date"
+     */
+    public function testPropertyEndDate()
+    {
+
+    }
+
+    /**
+     * Test attribute "timezone"
+     */
+    public function testPropertyTimezone()
+    {
+
+    }
+
+    /**
+     * Test attribute "accounts"
+     */
+    public function testPropertyAccounts()
     {
 
     }
@@ -153,33 +201,17 @@ class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "delivery_report"
+     */
+    public function testPropertyDeliveryReport()
+    {
+
+    }
+
+    /**
      * Test attribute "status_code"
      */
     public function testPropertyStatusCode()
-    {
-
-    }
-
-    /**
-     * Test attribute "status"
-     */
-    public function testPropertyStatus()
-    {
-
-    }
-
-    /**
-     * Test attribute "action"
-     */
-    public function testPropertyAction()
-    {
-
-    }
-
-    /**
-     * Test attribute "accounts"
-     */
-    public function testPropertyAccounts()
     {
 
     }

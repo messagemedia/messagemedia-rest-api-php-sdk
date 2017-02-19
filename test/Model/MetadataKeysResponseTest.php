@@ -1,6 +1,6 @@
 <?php
 /**
- * ReportingDetailPropertiesFiltersTest
+ * MetadataKeysResponseTest
  *
  * PHP version 5
  *
@@ -37,15 +37,15 @@
 namespace MessageMedia\RESTAPI;
 
 /**
- * ReportingDetailPropertiesFiltersTest Class Doc Comment
+ * MetadataKeysResponseTest Class Doc Comment
  *
  * @category    Class */
-// * @description ReportingDetailPropertiesFilters
+// * @description Metadata key response
 /**
  * @package     MessageMedia\RESTAPI
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  */
-class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
+class MetadataKeysResponseTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -81,105 +81,25 @@ class ReportingDetailPropertiesFiltersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "ReportingDetailPropertiesFilters"
+     * Test "MetadataKeysResponse"
      */
-    public function testReportingDetailPropertiesFilters()
+    public function testMetadataKeysResponse()
     {
 
     }
 
     /**
-     * Test attribute "delivery_report"
+     * Test attribute "data"
      */
-    public function testPropertyDeliveryReport()
+    public function testPropertyData()
     {
 
     }
 
     /**
-     * Test attribute "destination_address_country"
+     * Test attribute "properties"
      */
-    public function testPropertyDestinationAddressCountry()
-    {
-
-    }
-
-    /**
-     * Test attribute "destination_address"
-     */
-    public function testPropertyDestinationAddress()
-    {
-
-    }
-
-    /**
-     * Test attribute "message_format"
-     */
-    public function testPropertyMessageFormat()
-    {
-
-    }
-
-    /**
-     * Test attribute "metadata_key"
-     */
-    public function testPropertyMetadataKey()
-    {
-
-    }
-
-    /**
-     * Test attribute "metadata_value"
-     */
-    public function testPropertyMetadataValue()
-    {
-
-    }
-
-    /**
-     * Test attribute "source_address_country"
-     */
-    public function testPropertySourceAddressCountry()
-    {
-
-    }
-
-    /**
-     * Test attribute "source_address"
-     */
-    public function testPropertySourceAddress()
-    {
-
-    }
-
-    /**
-     * Test attribute "status_code"
-     */
-    public function testPropertyStatusCode()
-    {
-
-    }
-
-    /**
-     * Test attribute "status"
-     */
-    public function testPropertyStatus()
-    {
-
-    }
-
-    /**
-     * Test attribute "action"
-     */
-    public function testPropertyAction()
-    {
-
-    }
-
-    /**
-     * Test attribute "accounts"
-     */
-    public function testPropertyAccounts()
+    public function testPropertyProperties()
     {
 
     }

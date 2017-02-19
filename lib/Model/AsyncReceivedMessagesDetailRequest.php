@@ -1,6 +1,6 @@
 <?php
 /**
- * ReportingDetailPropertiesFilters
+ * AsyncReceivedMessagesDetailRequest
  *
  * PHP version 5
  *
@@ -39,38 +39,40 @@ namespace MessageMedia\RESTAPI\Model;
 use \ArrayAccess;
 
 /**
- * ReportingDetailPropertiesFilters Class Doc Comment
+ * AsyncReceivedMessagesDetailRequest Class Doc Comment
  *
  * @category    Class */
 /** 
  * @package     MessageMedia\RESTAPI
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  */
-class ReportingDetailPropertiesFilters implements ArrayAccess
+class AsyncReceivedMessagesDetailRequest implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $modelName = 'ReportingDetailProperties_filters';
+    protected static $modelName = 'async_received_messages_detail_request';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $types = array(
-        'delivery_report' => 'string',
-        'destination_address_country' => 'string',
-        'destination_address' => 'string',
-        'message_format' => 'string',
-        'metadata_key' => 'string',
-        'metadata_value' => 'string',
-        'source_address_country' => 'string',
-        'source_address' => 'string',
-        'status_code' => 'string',
-        'status' => 'string',
-        'action' => 'string',
-        'accounts' => 'string[]'
+        'start_date' => '\MessageMedia\RESTAPI\Model\StartDateBody',
+        'end_date' => '\MessageMedia\RESTAPI\Model\EndDateBody',
+        'sort_by' => 'string',
+        'sort_direction' => '\MessageMedia\RESTAPI\Model\SortDirectionBody',
+        'timezone' => '\MessageMedia\RESTAPI\Model\TimezoneBody',
+        'accounts' => '\MessageMedia\RESTAPI\Model\AccountsBody',
+        'destination_address_country' => '\MessageMedia\RESTAPI\Model\DestinationAddressCountryBody',
+        'destination_address' => '\MessageMedia\RESTAPI\Model\DestinationAddressBody',
+        'message_format' => '\MessageMedia\RESTAPI\Model\MessageFormatBody',
+        'metadata_key' => '\MessageMedia\RESTAPI\Model\MetadataKeyBody',
+        'metadata_value' => '\MessageMedia\RESTAPI\Model\MetadataValueBody',
+        'source_address_country' => '\MessageMedia\RESTAPI\Model\SourceAddressCountryBody',
+        'source_address' => '\MessageMedia\RESTAPI\Model\SourceAddressBody',
+        'action' => '\MessageMedia\RESTAPI\Model\ActionBody'
     );
 
     public static function types()
@@ -83,7 +85,12 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'delivery_report' => 'delivery_report',
+        'start_date' => 'start_date',
+        'end_date' => 'end_date',
+        'sort_by' => 'sort_by',
+        'sort_direction' => 'sort_direction',
+        'timezone' => 'timezone',
+        'accounts' => 'accounts',
         'destination_address_country' => 'destination_address_country',
         'destination_address' => 'destination_address',
         'message_format' => 'message_format',
@@ -91,10 +98,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
         'metadata_value' => 'metadata_value',
         'source_address_country' => 'source_address_country',
         'source_address' => 'source_address',
-        'status_code' => 'status_code',
-        'status' => 'status',
-        'action' => 'action',
-        'accounts' => 'accounts'
+        'action' => 'action'
     );
 
     public static function attributeMap()
@@ -107,7 +111,12 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'delivery_report' => 'setDeliveryReport',
+        'start_date' => 'setStartDate',
+        'end_date' => 'setEndDate',
+        'sort_by' => 'setSortBy',
+        'sort_direction' => 'setSortDirection',
+        'timezone' => 'setTimezone',
+        'accounts' => 'setAccounts',
         'destination_address_country' => 'setDestinationAddressCountry',
         'destination_address' => 'setDestinationAddress',
         'message_format' => 'setMessageFormat',
@@ -115,10 +124,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
         'metadata_value' => 'setMetadataValue',
         'source_address_country' => 'setSourceAddressCountry',
         'source_address' => 'setSourceAddress',
-        'status_code' => 'setStatusCode',
-        'status' => 'setStatus',
-        'action' => 'setAction',
-        'accounts' => 'setAccounts'
+        'action' => 'setAction'
     );
 
     public static function setters()
@@ -131,7 +137,12 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'delivery_report' => 'getDeliveryReport',
+        'start_date' => 'getStartDate',
+        'end_date' => 'getEndDate',
+        'sort_by' => 'getSortBy',
+        'sort_direction' => 'getSortDirection',
+        'timezone' => 'getTimezone',
+        'accounts' => 'getAccounts',
         'destination_address_country' => 'getDestinationAddressCountry',
         'destination_address' => 'getDestinationAddress',
         'message_format' => 'getMessageFormat',
@@ -139,10 +150,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
         'metadata_value' => 'getMetadataValue',
         'source_address_country' => 'getSourceAddressCountry',
         'source_address' => 'getSourceAddress',
-        'status_code' => 'getStatusCode',
-        'status' => 'getStatus',
-        'action' => 'getAction',
-        'accounts' => 'getAccounts'
+        'action' => 'getAction'
     );
 
     public static function getters()
@@ -150,8 +158,34 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
         return self::$getters;
     }
 
+    const SORT_BY_ACCOUNT = 'ACCOUNT';
+    const SORT_BY_ACTION = 'ACTION';
+    const SORT_BY_DESTINATION_ADDRESS = 'DESTINATION_ADDRESS';
+    const SORT_BY_DESTINATION_ADDRESS_COUNTRY = 'DESTINATION_ADDRESS_COUNTRY';
+    const SORT_BY_FORMAT = 'FORMAT';
+    const SORT_BY_SOURCE_ADDRESS = 'SOURCE_ADDRESS';
+    const SORT_BY_SOURCE_ADDRESS_COUNTRY = 'SOURCE_ADDRESS_COUNTRY';
+    const SORT_BY_TIMESTAMP = 'TIMESTAMP';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getSortByAllowableValues()
+    {
+        return [
+            self::SORT_BY_ACCOUNT,
+            self::SORT_BY_ACTION,
+            self::SORT_BY_DESTINATION_ADDRESS,
+            self::SORT_BY_DESTINATION_ADDRESS_COUNTRY,
+            self::SORT_BY_FORMAT,
+            self::SORT_BY_SOURCE_ADDRESS,
+            self::SORT_BY_SOURCE_ADDRESS_COUNTRY,
+            self::SORT_BY_TIMESTAMP,
+        ];
+    }
     
 
     /**
@@ -166,7 +200,12 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['delivery_report'] = isset($data['delivery_report']) ? $data['delivery_report'] : null;
+        $this->container['start_date'] = isset($data['start_date']) ? $data['start_date'] : null;
+        $this->container['end_date'] = isset($data['end_date']) ? $data['end_date'] : null;
+        $this->container['sort_by'] = isset($data['sort_by']) ? $data['sort_by'] : null;
+        $this->container['sort_direction'] = isset($data['sort_direction']) ? $data['sort_direction'] : null;
+        $this->container['timezone'] = isset($data['timezone']) ? $data['timezone'] : null;
+        $this->container['accounts'] = isset($data['accounts']) ? $data['accounts'] : null;
         $this->container['destination_address_country'] = isset($data['destination_address_country']) ? $data['destination_address_country'] : null;
         $this->container['destination_address'] = isset($data['destination_address']) ? $data['destination_address'] : null;
         $this->container['message_format'] = isset($data['message_format']) ? $data['message_format'] : null;
@@ -174,10 +213,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
         $this->container['metadata_value'] = isset($data['metadata_value']) ? $data['metadata_value'] : null;
         $this->container['source_address_country'] = isset($data['source_address_country']) ? $data['source_address_country'] : null;
         $this->container['source_address'] = isset($data['source_address']) ? $data['source_address'] : null;
-        $this->container['status_code'] = isset($data['status_code']) ? $data['status_code'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['action'] = isset($data['action']) ? $data['action'] : null;
-        $this->container['accounts'] = isset($data['accounts']) ? $data['accounts'] : null;
     }
 
     /**
@@ -188,6 +224,11 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = array();
+        $allowed_values = array("ACCOUNT", "ACTION", "DESTINATION_ADDRESS", "DESTINATION_ADDRESS_COUNTRY", "FORMAT", "SOURCE_ADDRESS", "SOURCE_ADDRESS_COUNTRY", "TIMESTAMP");
+        if (!in_array($this->container['sort_by'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'sort_by', must be one of #{allowed_values}.";
+        }
+
         return $invalid_properties;
     }
 
@@ -199,34 +240,147 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
      */
     public function valid()
     {
+        $allowed_values = array("ACCOUNT", "ACTION", "DESTINATION_ADDRESS", "DESTINATION_ADDRESS_COUNTRY", "FORMAT", "SOURCE_ADDRESS", "SOURCE_ADDRESS_COUNTRY", "TIMESTAMP");
+        if (!in_array($this->container['sort_by'], $allowed_values)) {
+            return false;
+        }
         return true;
     }
 
 
     /**
-     * Gets delivery_report
-     * @return string
+     * Gets start_date
+     * @return \MessageMedia\RESTAPI\Model\StartDateBody
      */
-    public function getDeliveryReport()
+    public function getStartDate()
     {
-        return $this->container['delivery_report'];
+        return $this->container['start_date'];
     }
 
     /**
-     * Sets delivery_report
-     * @param string $delivery_report
+     * Sets start_date
+     * @param \MessageMedia\RESTAPI\Model\StartDateBody $start_date
      * @return $this
      */
-    public function setDeliveryReport($delivery_report)
+    public function setStartDate($start_date)
     {
-        $this->container['delivery_report'] = $delivery_report;
+        $this->container['start_date'] = $start_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets end_date
+     * @return \MessageMedia\RESTAPI\Model\EndDateBody
+     */
+    public function getEndDate()
+    {
+        return $this->container['end_date'];
+    }
+
+    /**
+     * Sets end_date
+     * @param \MessageMedia\RESTAPI\Model\EndDateBody $end_date
+     * @return $this
+     */
+    public function setEndDate($end_date)
+    {
+        $this->container['end_date'] = $end_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets sort_by
+     * @return string
+     */
+    public function getSortBy()
+    {
+        return $this->container['sort_by'];
+    }
+
+    /**
+     * Sets sort_by
+     * @param string $sort_by Field to sort results set by
+     * @return $this
+     */
+    public function setSortBy($sort_by)
+    {
+        $allowed_values = array('ACCOUNT', 'ACTION', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'TIMESTAMP');
+        if (!in_array($sort_by, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'sort_by', must be one of 'ACCOUNT', 'ACTION', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'TIMESTAMP'");
+        }
+        $this->container['sort_by'] = $sort_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets sort_direction
+     * @return \MessageMedia\RESTAPI\Model\SortDirectionBody
+     */
+    public function getSortDirection()
+    {
+        return $this->container['sort_direction'];
+    }
+
+    /**
+     * Sets sort_direction
+     * @param \MessageMedia\RESTAPI\Model\SortDirectionBody $sort_direction
+     * @return $this
+     */
+    public function setSortDirection($sort_direction)
+    {
+        $this->container['sort_direction'] = $sort_direction;
+
+        return $this;
+    }
+
+    /**
+     * Gets timezone
+     * @return \MessageMedia\RESTAPI\Model\TimezoneBody
+     */
+    public function getTimezone()
+    {
+        return $this->container['timezone'];
+    }
+
+    /**
+     * Sets timezone
+     * @param \MessageMedia\RESTAPI\Model\TimezoneBody $timezone
+     * @return $this
+     */
+    public function setTimezone($timezone)
+    {
+        $this->container['timezone'] = $timezone;
+
+        return $this;
+    }
+
+    /**
+     * Gets accounts
+     * @return \MessageMedia\RESTAPI\Model\AccountsBody
+     */
+    public function getAccounts()
+    {
+        return $this->container['accounts'];
+    }
+
+    /**
+     * Sets accounts
+     * @param \MessageMedia\RESTAPI\Model\AccountsBody $accounts
+     * @return $this
+     */
+    public function setAccounts($accounts)
+    {
+        $this->container['accounts'] = $accounts;
 
         return $this;
     }
 
     /**
      * Gets destination_address_country
-     * @return string
+     * @return \MessageMedia\RESTAPI\Model\DestinationAddressCountryBody
      */
     public function getDestinationAddressCountry()
     {
@@ -235,7 +389,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Sets destination_address_country
-     * @param string $destination_address_country
+     * @param \MessageMedia\RESTAPI\Model\DestinationAddressCountryBody $destination_address_country
      * @return $this
      */
     public function setDestinationAddressCountry($destination_address_country)
@@ -247,7 +401,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Gets destination_address
-     * @return string
+     * @return \MessageMedia\RESTAPI\Model\DestinationAddressBody
      */
     public function getDestinationAddress()
     {
@@ -256,7 +410,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Sets destination_address
-     * @param string $destination_address
+     * @param \MessageMedia\RESTAPI\Model\DestinationAddressBody $destination_address
      * @return $this
      */
     public function setDestinationAddress($destination_address)
@@ -268,7 +422,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Gets message_format
-     * @return string
+     * @return \MessageMedia\RESTAPI\Model\MessageFormatBody
      */
     public function getMessageFormat()
     {
@@ -277,7 +431,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Sets message_format
-     * @param string $message_format
+     * @param \MessageMedia\RESTAPI\Model\MessageFormatBody $message_format
      * @return $this
      */
     public function setMessageFormat($message_format)
@@ -289,7 +443,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Gets metadata_key
-     * @return string
+     * @return \MessageMedia\RESTAPI\Model\MetadataKeyBody
      */
     public function getMetadataKey()
     {
@@ -298,7 +452,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Sets metadata_key
-     * @param string $metadata_key
+     * @param \MessageMedia\RESTAPI\Model\MetadataKeyBody $metadata_key
      * @return $this
      */
     public function setMetadataKey($metadata_key)
@@ -310,7 +464,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Gets metadata_value
-     * @return string
+     * @return \MessageMedia\RESTAPI\Model\MetadataValueBody
      */
     public function getMetadataValue()
     {
@@ -319,7 +473,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Sets metadata_value
-     * @param string $metadata_value
+     * @param \MessageMedia\RESTAPI\Model\MetadataValueBody $metadata_value
      * @return $this
      */
     public function setMetadataValue($metadata_value)
@@ -331,7 +485,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Gets source_address_country
-     * @return string
+     * @return \MessageMedia\RESTAPI\Model\SourceAddressCountryBody
      */
     public function getSourceAddressCountry()
     {
@@ -340,7 +494,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Sets source_address_country
-     * @param string $source_address_country
+     * @param \MessageMedia\RESTAPI\Model\SourceAddressCountryBody $source_address_country
      * @return $this
      */
     public function setSourceAddressCountry($source_address_country)
@@ -352,7 +506,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Gets source_address
-     * @return string
+     * @return \MessageMedia\RESTAPI\Model\SourceAddressBody
      */
     public function getSourceAddress()
     {
@@ -361,7 +515,7 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Sets source_address
-     * @param string $source_address
+     * @param \MessageMedia\RESTAPI\Model\SourceAddressBody $source_address
      * @return $this
      */
     public function setSourceAddress($source_address)
@@ -372,50 +526,8 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
     }
 
     /**
-     * Gets status_code
-     * @return string
-     */
-    public function getStatusCode()
-    {
-        return $this->container['status_code'];
-    }
-
-    /**
-     * Sets status_code
-     * @param string $status_code
-     * @return $this
-     */
-    public function setStatusCode($status_code)
-    {
-        $this->container['status_code'] = $status_code;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     * @param string $status
-     * @return $this
-     */
-    public function setStatus($status)
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
      * Gets action
-     * @return string
+     * @return \MessageMedia\RESTAPI\Model\ActionBody
      */
     public function getAction()
     {
@@ -424,33 +536,12 @@ class ReportingDetailPropertiesFilters implements ArrayAccess
 
     /**
      * Sets action
-     * @param string $action
+     * @param \MessageMedia\RESTAPI\Model\ActionBody $action
      * @return $this
      */
     public function setAction($action)
     {
         $this->container['action'] = $action;
-
-        return $this;
-    }
-
-    /**
-     * Gets accounts
-     * @return string[]
-     */
-    public function getAccounts()
-    {
-        return $this->container['accounts'];
-    }
-
-    /**
-     * Sets accounts
-     * @param string[] $accounts List of accounts that were used to generate this report
-     * @return $this
-     */
-    public function setAccounts($accounts)
-    {
-        $this->container['accounts'] = $accounts;
 
         return $this;
     }

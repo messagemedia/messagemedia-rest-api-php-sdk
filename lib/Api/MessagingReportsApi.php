@@ -96,13 +96,266 @@ class MessagingReportsApi
     }
 
     /**
+     * Operation getAsyncReportById
+     *
+     * Lists an asynchronous report.
+     *
+     * @param string $report_id Unique ID of the async report (required)
+     * @return \MessageMedia\RESTAPI\Model\AsyncReport
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function getAsyncReportById($report_id)
+    {
+        list($response) = $this->getAsyncReportByIdWithHttpInfo($report_id);
+        return $response;
+    }
+
+    /**
+     * Operation getAsyncReportByIdWithHttpInfo
+     *
+     * Lists an asynchronous report.
+     *
+     * @param string $report_id Unique ID of the async report (required)
+     * @return Array of \MessageMedia\RESTAPI\Model\AsyncReport, HTTP status code, HTTP response headers (array of strings)
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function getAsyncReportByIdWithHttpInfo($report_id)
+    {
+        // verify the required parameter 'report_id' is set
+        if ($report_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $report_id when calling getAsyncReportById');
+        }
+        // parse inputs
+        $resourcePath = "/reporting/async_reports/{report_id}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // path params
+        if ($report_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "report_id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($report_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires HTTP basic authentication
+        if (strlen($this->apiClient->getConfig()->getUsername()) !== 0 or strlen($this->apiClient->getConfig()->getPassword()) !== 0) {
+            $headerParams['Authorization'] = 'Basic ' . base64_encode($this->apiClient->getConfig()->getUsername() . ":" . $this->apiClient->getConfig()->getPassword());
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\MessageMedia\RESTAPI\Model\AsyncReport',
+                '/reporting/async_reports/{report_id}'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\MessageMedia\RESTAPI\Model\AsyncReport', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\MessageMedia\RESTAPI\Model\AsyncReport', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAsyncReportDataById
+     *
+     * Gets the data of an asynchronous report.
+     *
+     * @param string $report_id Unique ID of the async report (required)
+     * @return \SplFileObject
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function getAsyncReportDataById($report_id)
+    {
+        list($response) = $this->getAsyncReportDataByIdWithHttpInfo($report_id);
+        return $response;
+    }
+
+    /**
+     * Operation getAsyncReportDataByIdWithHttpInfo
+     *
+     * Gets the data of an asynchronous report.
+     *
+     * @param string $report_id Unique ID of the async report (required)
+     * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function getAsyncReportDataByIdWithHttpInfo($report_id)
+    {
+        // verify the required parameter 'report_id' is set
+        if ($report_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $report_id when calling getAsyncReportDataById');
+        }
+        // parse inputs
+        $resourcePath = "/reporting/async_reports/{report_id}/data";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // path params
+        if ($report_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "report_id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($report_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires HTTP basic authentication
+        if (strlen($this->apiClient->getConfig()->getUsername()) !== 0 or strlen($this->apiClient->getConfig()->getPassword()) !== 0) {
+            $headerParams['Authorization'] = 'Basic ' . base64_encode($this->apiClient->getConfig()->getUsername() . ":" . $this->apiClient->getConfig()->getPassword());
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\SplFileObject',
+                '/reporting/async_reports/{report_id}/data'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\SplFileObject', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\SplFileObject', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAsyncReports
+     *
+     * Gets a single asynchronous report.
+     *
+     * @return \MessageMedia\RESTAPI\Model\InlineResponse200
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function getAsyncReports()
+    {
+        list($response) = $this->getAsyncReportsWithHttpInfo();
+        return $response;
+    }
+
+    /**
+     * Operation getAsyncReportsWithHttpInfo
+     *
+     * Gets a single asynchronous report.
+     *
+     * @return Array of \MessageMedia\RESTAPI\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function getAsyncReportsWithHttpInfo()
+    {
+        // parse inputs
+        $resourcePath = "/reporting/async_reports";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires HTTP basic authentication
+        if (strlen($this->apiClient->getConfig()->getUsername()) !== 0 or strlen($this->apiClient->getConfig()->getPassword()) !== 0) {
+            $headerParams['Authorization'] = 'Basic ' . base64_encode($this->apiClient->getConfig()->getUsername() . ":" . $this->apiClient->getConfig()->getPassword());
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\MessageMedia\RESTAPI\Model\InlineResponse200',
+                '/reporting/async_reports'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\MessageMedia\RESTAPI\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\MessageMedia\RESTAPI\Model\InlineResponse200', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
      * Operation getDeliveryReportsDetail
      *
      * Returns a list of delivery reports
      *
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
      * @param string $message_format Filter results by message format. (optional)
@@ -131,9 +384,9 @@ class MessagingReportsApi
      *
      * Returns a list of delivery reports
      *
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
      * @param string $message_format Filter results by message format. (optional)
@@ -345,10 +598,10 @@ class MessagingReportsApi
      *
      * Returns a summarised report of delivery reports
      *
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
      * @param string $group_by Field to group results set by (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
      * @param string $message_format Filter results by message format. (optional)
@@ -375,10 +628,10 @@ class MessagingReportsApi
      *
      * Returns a summarised report of delivery reports
      *
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
      * @param string $group_by Field to group results set by (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
      * @param string $message_format Filter results by message format. (optional)
@@ -573,13 +826,141 @@ class MessagingReportsApi
     }
 
     /**
+     * Operation getMetadataKeys
+     *
+     * Returns a list of metadata keys
+     *
+     * @param string $message_type Message type. Possible values are sent messages, received messages and delivery receipts. (required)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $timezone The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. &#39;Australia/Melbourne&#39;. (optional)
+     * @return \MessageMedia\RESTAPI\Model\MetadataKeysResponse
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function getMetadataKeys($message_type, $start_date, $end_date, $accounts = null, $timezone = null)
+    {
+        list($response) = $this->getMetadataKeysWithHttpInfo($message_type, $start_date, $end_date, $accounts, $timezone);
+        return $response;
+    }
+
+    /**
+     * Operation getMetadataKeysWithHttpInfo
+     *
+     * Returns a list of metadata keys
+     *
+     * @param string $message_type Message type. Possible values are sent messages, received messages and delivery receipts. (required)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $timezone The timezone to use for the context of the request. If provided this will be used as the timezone for the start date and end date parameters, and all datetime fields returns in the response. The timezone should be provided as a IANA (Internet Assigned Numbers Authority) time zone database zone name, i.e. &#39;Australia/Melbourne&#39;. (optional)
+     * @return Array of \MessageMedia\RESTAPI\Model\MetadataKeysResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function getMetadataKeysWithHttpInfo($message_type, $start_date, $end_date, $accounts = null, $timezone = null)
+    {
+        // verify the required parameter 'message_type' is set
+        if ($message_type === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $message_type when calling getMetadataKeys');
+        }
+        // verify the required parameter 'start_date' is set
+        if ($start_date === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $start_date when calling getMetadataKeys');
+        }
+        // verify the required parameter 'end_date' is set
+        if ($end_date === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $end_date when calling getMetadataKeys');
+        }
+        if (!is_null($accounts) && (strlen($accounts) > 200)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getMetadataKeys, must be smaller than or equal to 200.');
+        }
+        if (!is_null($accounts) && (strlen($accounts) < 1)) {
+            throw new \InvalidArgumentException('invalid length for "$accounts" when calling MessagingReportsApi.getMetadataKeys, must be bigger than or equal to 1.');
+        }
+
+        // parse inputs
+        $resourcePath = "/reporting/{messageType}/metadata/keys";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // query params
+        if ($start_date !== null) {
+            $queryParams['start_date'] = $this->apiClient->getSerializer()->toQueryValue($start_date);
+        }
+        // query params
+        if ($end_date !== null) {
+            $queryParams['end_date'] = $this->apiClient->getSerializer()->toQueryValue($end_date);
+        }
+        // query params
+        if ($accounts !== null) {
+            $queryParams['accounts'] = $this->apiClient->getSerializer()->toQueryValue($accounts);
+        }
+        // query params
+        if ($timezone !== null) {
+            $queryParams['timezone'] = $this->apiClient->getSerializer()->toQueryValue($timezone);
+        }
+        // path params
+        if ($message_type !== null) {
+            $resourcePath = str_replace(
+                "{" . "messageType" . "}",
+                $this->apiClient->getSerializer()->toPathValue($message_type),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires HTTP basic authentication
+        if (strlen($this->apiClient->getConfig()->getUsername()) !== 0 or strlen($this->apiClient->getConfig()->getPassword()) !== 0) {
+            $headerParams['Authorization'] = 'Basic ' . base64_encode($this->apiClient->getConfig()->getUsername() . ":" . $this->apiClient->getConfig()->getPassword());
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\MessageMedia\RESTAPI\Model\MetadataKeysResponse',
+                '/reporting/{messageType}/metadata/keys'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\MessageMedia\RESTAPI\Model\MetadataKeysResponse', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\MessageMedia\RESTAPI\Model\MetadataKeysResponse', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
      * Operation getReceivedMessagesDetail
      *
      * Returns a list message received
      *
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $action Filter results by the action that was invoked for this message. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
@@ -607,9 +988,9 @@ class MessagingReportsApi
      *
      * Returns a list message received
      *
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $action Filter results by the action that was invoked for this message. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
@@ -802,10 +1183,10 @@ class MessagingReportsApi
      *
      * Returns a summarised report of messages received
      *
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
      * @param string $group_by Field to group results set by (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
      * @param string $message_format Filter results by message format. (optional)
@@ -830,10 +1211,10 @@ class MessagingReportsApi
      *
      * Returns a summarised report of messages received
      *
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
      * @param string $group_by Field to group results set by (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
      * @param string $message_format Filter results by message format. (optional)
@@ -1008,9 +1389,9 @@ class MessagingReportsApi
      *
      * Returns a list of message sent
      *
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param bool $delivery_report Filter results by delivery report. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
@@ -1040,9 +1421,9 @@ class MessagingReportsApi
      *
      * Returns a list of message sent
      *
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param bool $delivery_report Filter results by delivery report. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
@@ -1259,10 +1640,10 @@ class MessagingReportsApi
      *
      * Returns a summarised report of messages sent
      *
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
      * @param string $group_by Field to group results set by (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param bool $delivery_report Filter results by delivery report. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
@@ -1289,10 +1670,10 @@ class MessagingReportsApi
      *
      * Returns a summarised report of messages sent
      *
-     * @param \DateTime $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
+     * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
      * @param string $group_by Field to group results set by (required)
-     * @param \DateTime $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. (required)
-     * @param string $accounts Filter results by specific accounts. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
+     * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
+     * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param bool $delivery_report Filter results by delivery report. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
      * @param string $destination_address Filter results by destination address. (optional)
@@ -1471,6 +1852,522 @@ class MessagingReportsApi
             switch ($e->getCode()) {
                 case 200:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\MessageMedia\RESTAPI\Model\SummaryReport', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation submitAsyncDeliveryReportsDetail
+     *
+     * Submits a request to generate an async detail report
+     *
+     * @param \MessageMedia\RESTAPI\Model\AsyncDeliveryReportDetailRequest $async_delivery_report_detail_request  (required)
+     * @return \MessageMedia\RESTAPI\Model\AsyncReportResponse
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function submitAsyncDeliveryReportsDetail($async_delivery_report_detail_request)
+    {
+        list($response) = $this->submitAsyncDeliveryReportsDetailWithHttpInfo($async_delivery_report_detail_request);
+        return $response;
+    }
+
+    /**
+     * Operation submitAsyncDeliveryReportsDetailWithHttpInfo
+     *
+     * Submits a request to generate an async detail report
+     *
+     * @param \MessageMedia\RESTAPI\Model\AsyncDeliveryReportDetailRequest $async_delivery_report_detail_request  (required)
+     * @return Array of \MessageMedia\RESTAPI\Model\AsyncReportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function submitAsyncDeliveryReportsDetailWithHttpInfo($async_delivery_report_detail_request)
+    {
+        // verify the required parameter 'async_delivery_report_detail_request' is set
+        if ($async_delivery_report_detail_request === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $async_delivery_report_detail_request when calling submitAsyncDeliveryReportsDetail');
+        }
+        // parse inputs
+        $resourcePath = "/reporting/delivery_reports/detail/async";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($async_delivery_report_detail_request)) {
+            $_tempBody = $async_delivery_report_detail_request;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires HTTP basic authentication
+        if (strlen($this->apiClient->getConfig()->getUsername()) !== 0 or strlen($this->apiClient->getConfig()->getPassword()) !== 0) {
+            $headerParams['Authorization'] = 'Basic ' . base64_encode($this->apiClient->getConfig()->getUsername() . ":" . $this->apiClient->getConfig()->getPassword());
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\MessageMedia\RESTAPI\Model\AsyncReportResponse',
+                '/reporting/delivery_reports/detail/async'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\MessageMedia\RESTAPI\Model\AsyncReportResponse', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\MessageMedia\RESTAPI\Model\AsyncReportResponse', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation submitDeliveryReportsSummary
+     *
+     * Submits a summarised report of delivery reports
+     *
+     * @param \MessageMedia\RESTAPI\Model\AsyncDeliveryReportsSummaryRequest $async_delivery_reports_summary_request  (required)
+     * @return \MessageMedia\RESTAPI\Model\AsyncReportResponse
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function submitDeliveryReportsSummary($async_delivery_reports_summary_request)
+    {
+        list($response) = $this->submitDeliveryReportsSummaryWithHttpInfo($async_delivery_reports_summary_request);
+        return $response;
+    }
+
+    /**
+     * Operation submitDeliveryReportsSummaryWithHttpInfo
+     *
+     * Submits a summarised report of delivery reports
+     *
+     * @param \MessageMedia\RESTAPI\Model\AsyncDeliveryReportsSummaryRequest $async_delivery_reports_summary_request  (required)
+     * @return Array of \MessageMedia\RESTAPI\Model\AsyncReportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function submitDeliveryReportsSummaryWithHttpInfo($async_delivery_reports_summary_request)
+    {
+        // verify the required parameter 'async_delivery_reports_summary_request' is set
+        if ($async_delivery_reports_summary_request === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $async_delivery_reports_summary_request when calling submitDeliveryReportsSummary');
+        }
+        // parse inputs
+        $resourcePath = "/reporting/delivery_reports/summary/async";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($async_delivery_reports_summary_request)) {
+            $_tempBody = $async_delivery_reports_summary_request;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires HTTP basic authentication
+        if (strlen($this->apiClient->getConfig()->getUsername()) !== 0 or strlen($this->apiClient->getConfig()->getPassword()) !== 0) {
+            $headerParams['Authorization'] = 'Basic ' . base64_encode($this->apiClient->getConfig()->getUsername() . ":" . $this->apiClient->getConfig()->getPassword());
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\MessageMedia\RESTAPI\Model\AsyncReportResponse',
+                '/reporting/delivery_reports/summary/async'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\MessageMedia\RESTAPI\Model\AsyncReportResponse', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\MessageMedia\RESTAPI\Model\AsyncReportResponse', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation submitReceivedMessagesDetail
+     *
+     * Submits a request to generate an async detail report
+     *
+     * @param \MessageMedia\RESTAPI\Model\AsyncReceivedMessagesDetailRequest $async_received_messages_detail_request  (required)
+     * @return \MessageMedia\RESTAPI\Model\AsyncReportResponse
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function submitReceivedMessagesDetail($async_received_messages_detail_request)
+    {
+        list($response) = $this->submitReceivedMessagesDetailWithHttpInfo($async_received_messages_detail_request);
+        return $response;
+    }
+
+    /**
+     * Operation submitReceivedMessagesDetailWithHttpInfo
+     *
+     * Submits a request to generate an async detail report
+     *
+     * @param \MessageMedia\RESTAPI\Model\AsyncReceivedMessagesDetailRequest $async_received_messages_detail_request  (required)
+     * @return Array of \MessageMedia\RESTAPI\Model\AsyncReportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function submitReceivedMessagesDetailWithHttpInfo($async_received_messages_detail_request)
+    {
+        // verify the required parameter 'async_received_messages_detail_request' is set
+        if ($async_received_messages_detail_request === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $async_received_messages_detail_request when calling submitReceivedMessagesDetail');
+        }
+        // parse inputs
+        $resourcePath = "/reporting/received_messages/detail/async";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($async_received_messages_detail_request)) {
+            $_tempBody = $async_received_messages_detail_request;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires HTTP basic authentication
+        if (strlen($this->apiClient->getConfig()->getUsername()) !== 0 or strlen($this->apiClient->getConfig()->getPassword()) !== 0) {
+            $headerParams['Authorization'] = 'Basic ' . base64_encode($this->apiClient->getConfig()->getUsername() . ":" . $this->apiClient->getConfig()->getPassword());
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\MessageMedia\RESTAPI\Model\AsyncReportResponse',
+                '/reporting/received_messages/detail/async'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\MessageMedia\RESTAPI\Model\AsyncReportResponse', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\MessageMedia\RESTAPI\Model\AsyncReportResponse', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation submitReceivedMessagesSummary
+     *
+     * Submits a summarised report of received messages
+     *
+     * @param \MessageMedia\RESTAPI\Model\AsyncReceivedMessagesSummaryRequest $async_received_messages_summary_request  (required)
+     * @return \MessageMedia\RESTAPI\Model\AsyncReportResponse
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function submitReceivedMessagesSummary($async_received_messages_summary_request)
+    {
+        list($response) = $this->submitReceivedMessagesSummaryWithHttpInfo($async_received_messages_summary_request);
+        return $response;
+    }
+
+    /**
+     * Operation submitReceivedMessagesSummaryWithHttpInfo
+     *
+     * Submits a summarised report of received messages
+     *
+     * @param \MessageMedia\RESTAPI\Model\AsyncReceivedMessagesSummaryRequest $async_received_messages_summary_request  (required)
+     * @return Array of \MessageMedia\RESTAPI\Model\AsyncReportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function submitReceivedMessagesSummaryWithHttpInfo($async_received_messages_summary_request)
+    {
+        // verify the required parameter 'async_received_messages_summary_request' is set
+        if ($async_received_messages_summary_request === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $async_received_messages_summary_request when calling submitReceivedMessagesSummary');
+        }
+        // parse inputs
+        $resourcePath = "/reporting/received_messages/summary/async";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($async_received_messages_summary_request)) {
+            $_tempBody = $async_received_messages_summary_request;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires HTTP basic authentication
+        if (strlen($this->apiClient->getConfig()->getUsername()) !== 0 or strlen($this->apiClient->getConfig()->getPassword()) !== 0) {
+            $headerParams['Authorization'] = 'Basic ' . base64_encode($this->apiClient->getConfig()->getUsername() . ":" . $this->apiClient->getConfig()->getPassword());
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\MessageMedia\RESTAPI\Model\AsyncReportResponse',
+                '/reporting/received_messages/summary/async'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\MessageMedia\RESTAPI\Model\AsyncReportResponse', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\MessageMedia\RESTAPI\Model\AsyncReportResponse', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation submitSentMessagesDetail
+     *
+     * Submits a request to generate an async detail report
+     *
+     * @param \MessageMedia\RESTAPI\Model\AsyncSentMessagesDetailRequest $async_sent_messages_detail_request  (required)
+     * @return \MessageMedia\RESTAPI\Model\AsyncReportResponse
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function submitSentMessagesDetail($async_sent_messages_detail_request)
+    {
+        list($response) = $this->submitSentMessagesDetailWithHttpInfo($async_sent_messages_detail_request);
+        return $response;
+    }
+
+    /**
+     * Operation submitSentMessagesDetailWithHttpInfo
+     *
+     * Submits a request to generate an async detail report
+     *
+     * @param \MessageMedia\RESTAPI\Model\AsyncSentMessagesDetailRequest $async_sent_messages_detail_request  (required)
+     * @return Array of \MessageMedia\RESTAPI\Model\AsyncReportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function submitSentMessagesDetailWithHttpInfo($async_sent_messages_detail_request)
+    {
+        // verify the required parameter 'async_sent_messages_detail_request' is set
+        if ($async_sent_messages_detail_request === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $async_sent_messages_detail_request when calling submitSentMessagesDetail');
+        }
+        // parse inputs
+        $resourcePath = "/reporting/sent_messages/detail/async";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($async_sent_messages_detail_request)) {
+            $_tempBody = $async_sent_messages_detail_request;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires HTTP basic authentication
+        if (strlen($this->apiClient->getConfig()->getUsername()) !== 0 or strlen($this->apiClient->getConfig()->getPassword()) !== 0) {
+            $headerParams['Authorization'] = 'Basic ' . base64_encode($this->apiClient->getConfig()->getUsername() . ":" . $this->apiClient->getConfig()->getPassword());
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\MessageMedia\RESTAPI\Model\AsyncReportResponse',
+                '/reporting/sent_messages/detail/async'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\MessageMedia\RESTAPI\Model\AsyncReportResponse', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\MessageMedia\RESTAPI\Model\AsyncReportResponse', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation submitSentMessagesSummary
+     *
+     * Submits a summarised report of sent messages
+     *
+     * @param \MessageMedia\RESTAPI\Model\AsyncDeliverySentMessagesRequest $async_delivery_sent_messages_request  (required)
+     * @return \MessageMedia\RESTAPI\Model\AsyncReportResponse
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function submitSentMessagesSummary($async_delivery_sent_messages_request)
+    {
+        list($response) = $this->submitSentMessagesSummaryWithHttpInfo($async_delivery_sent_messages_request);
+        return $response;
+    }
+
+    /**
+     * Operation submitSentMessagesSummaryWithHttpInfo
+     *
+     * Submits a summarised report of sent messages
+     *
+     * @param \MessageMedia\RESTAPI\Model\AsyncDeliverySentMessagesRequest $async_delivery_sent_messages_request  (required)
+     * @return Array of \MessageMedia\RESTAPI\Model\AsyncReportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
+     */
+    public function submitSentMessagesSummaryWithHttpInfo($async_delivery_sent_messages_request)
+    {
+        // verify the required parameter 'async_delivery_sent_messages_request' is set
+        if ($async_delivery_sent_messages_request === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $async_delivery_sent_messages_request when calling submitSentMessagesSummary');
+        }
+        // parse inputs
+        $resourcePath = "/reporting/sent_messages/summary/async";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($async_delivery_sent_messages_request)) {
+            $_tempBody = $async_delivery_sent_messages_request;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // this endpoint requires HTTP basic authentication
+        if (strlen($this->apiClient->getConfig()->getUsername()) !== 0 or strlen($this->apiClient->getConfig()->getPassword()) !== 0) {
+            $headerParams['Authorization'] = 'Basic ' . base64_encode($this->apiClient->getConfig()->getUsername() . ":" . $this->apiClient->getConfig()->getPassword());
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\MessageMedia\RESTAPI\Model\AsyncReportResponse',
+                '/reporting/sent_messages/summary/async'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\MessageMedia\RESTAPI\Model\AsyncReportResponse', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\MessageMedia\RESTAPI\Model\AsyncReportResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
