@@ -98,7 +98,7 @@ class MessagingReportsApi
     /**
      * Operation getAsyncReportById
      *
-     * Lists an asynchronous report.
+     * Gets a single asynchronous report.
      *
      * @param string $report_id Unique ID of the async report (required)
      * @return \MessageMedia\RESTAPI\Model\AsyncReport
@@ -113,7 +113,7 @@ class MessagingReportsApi
     /**
      * Operation getAsyncReportByIdWithHttpInfo
      *
-     * Lists an asynchronous report.
+     * Gets a single asynchronous report.
      *
      * @param string $report_id Unique ID of the async report (required)
      * @return Array of \MessageMedia\RESTAPI\Model\AsyncReport, HTTP status code, HTTP response headers (array of strings)
@@ -276,27 +276,42 @@ class MessagingReportsApi
     /**
      * Operation getAsyncReports
      *
-     * Gets a single asynchronous report.
+     * Lists asynchronous reports.
      *
+     * @param int $page Page number for paging through paginated result sets. (optional)
+     * @param int $page_size Number of results to return in a page for paginated result sets. (optional)
      * @return \MessageMedia\RESTAPI\Model\InlineResponse200
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getAsyncReports()
+    public function getAsyncReports($page = null, $page_size = null)
     {
-        list($response) = $this->getAsyncReportsWithHttpInfo();
+        list($response) = $this->getAsyncReportsWithHttpInfo($page, $page_size);
         return $response;
     }
 
     /**
      * Operation getAsyncReportsWithHttpInfo
      *
-     * Gets a single asynchronous report.
+     * Lists asynchronous reports.
      *
+     * @param int $page Page number for paging through paginated result sets. (optional)
+     * @param int $page_size Number of results to return in a page for paginated result sets. (optional)
      * @return Array of \MessageMedia\RESTAPI\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getAsyncReportsWithHttpInfo()
+    public function getAsyncReportsWithHttpInfo($page = null, $page_size = null)
     {
+        if (!is_null($page) && ($page < 1.0)) {
+            throw new \InvalidArgumentException('invalid value for "$page" when calling MessagingReportsApi.getAsyncReports, must be bigger than or equal to 1.0.');
+        }
+
+        if (!is_null($page_size) && ($page_size > 100.0)) {
+            throw new \InvalidArgumentException('invalid value for "$page_size" when calling MessagingReportsApi.getAsyncReports, must be smaller than or equal to 100.0.');
+        }
+        if (!is_null($page_size) && ($page_size < 1.0)) {
+            throw new \InvalidArgumentException('invalid value for "$page_size" when calling MessagingReportsApi.getAsyncReports, must be bigger than or equal to 1.0.');
+        }
+
         // parse inputs
         $resourcePath = "/reporting/async_reports";
         $httpBody = '';
@@ -309,6 +324,14 @@ class MessagingReportsApi
         }
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
+        // query params
+        if ($page !== null) {
+            $queryParams['page'] = $this->apiClient->getSerializer()->toQueryValue($page);
+        }
+        // query params
+        if ($page_size !== null) {
+            $queryParams['page_size'] = $this->apiClient->getSerializer()->toQueryValue($page_size);
+        }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 

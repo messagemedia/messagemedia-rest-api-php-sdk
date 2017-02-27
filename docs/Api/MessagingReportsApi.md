@@ -4,9 +4,9 @@ All URIs are relative to *https://api.messagemedia.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getAsyncReportById**](MessagingReportsApi.md#getAsyncReportById) | **GET** /reporting/async_reports/{report_id} | Lists an asynchronous report.
+[**getAsyncReportById**](MessagingReportsApi.md#getAsyncReportById) | **GET** /reporting/async_reports/{report_id} | Gets a single asynchronous report.
 [**getAsyncReportDataById**](MessagingReportsApi.md#getAsyncReportDataById) | **GET** /reporting/async_reports/{report_id}/data | Gets the data of an asynchronous report.
-[**getAsyncReports**](MessagingReportsApi.md#getAsyncReports) | **GET** /reporting/async_reports | Gets a single asynchronous report.
+[**getAsyncReports**](MessagingReportsApi.md#getAsyncReports) | **GET** /reporting/async_reports | Lists asynchronous reports.
 [**getDeliveryReportsDetail**](MessagingReportsApi.md#getDeliveryReportsDetail) | **GET** /reporting/delivery_reports/detail | Returns a list of delivery reports
 [**getDeliveryReportsSummary**](MessagingReportsApi.md#getDeliveryReportsSummary) | **GET** /reporting/delivery_reports/summary | Returns a summarised report of delivery reports
 [**getMetadataKeys**](MessagingReportsApi.md#getMetadataKeys) | **GET** /reporting/{messageType}/metadata/keys | Returns a list of metadata keys
@@ -25,9 +25,9 @@ Method | HTTP request | Description
 # **getAsyncReportById**
 > \MessageMedia\RESTAPI\Model\AsyncReport getAsyncReportById($report_id)
 
-Lists an asynchronous report.
+Gets a single asynchronous report.
 
-This endpoints lists metadata of a requested asynchronous report.
+This endpoints shows information of a single requested asynchronous report.
 
 ### Example
 ```php
@@ -121,11 +121,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAsyncReports**
-> \MessageMedia\RESTAPI\Model\InlineResponse200 getAsyncReports()
+> \MessageMedia\RESTAPI\Model\InlineResponse200 getAsyncReports($page, $page_size)
 
-Gets a single asynchronous report.
+Lists asynchronous reports.
 
-This endpoint lists metadata about requested async reports.
+This endpoint lists all the requested asynchronous reports.
 
 ### Example
 ```php
@@ -137,9 +137,11 @@ MessageMedia\RESTAPI\Configuration::getDefaultConfiguration()->setUsername('YOUR
 MessageMedia\RESTAPI\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
 
 $api_instance = new MessageMedia\RESTAPI\Api\MessagingReportsApi();
+$page = 56; // int | Page number for paging through paginated result sets.
+$page_size = 56; // int | Number of results to return in a page for paginated result sets.
 
 try {
-    $result = $api_instance->getAsyncReports();
+    $result = $api_instance->getAsyncReports($page, $page_size);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MessagingReportsApi->getAsyncReports: ', $e->getMessage(), PHP_EOL;
@@ -148,7 +150,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**| Page number for paging through paginated result sets. | [optional]
+ **page_size** | **int**| Number of results to return in a page for paginated result sets. | [optional]
 
 ### Return type
 

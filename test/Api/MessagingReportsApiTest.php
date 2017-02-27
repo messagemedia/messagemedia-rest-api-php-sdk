@@ -85,7 +85,7 @@ class MessagingReportsApiTest extends \PHPUnit_Framework_TestCase
     /**
      * Test case for getAsyncReportById
      *
-     * Lists an asynchronous report..
+     * Gets a single asynchronous report..
      *
      */
     public function testGetAsyncReportById()
@@ -107,7 +107,7 @@ class MessagingReportsApiTest extends \PHPUnit_Framework_TestCase
     /**
      * Test case for getAsyncReports
      *
-     * Gets a single asynchronous report..
+     * Lists asynchronous reports..
      *
      */
     public function testGetAsyncReports()
