@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **source_address_country** | [**\MessageMedia\RESTAPI\Model\SourceAddressCountryBody**](SourceAddressCountryBody.md) |  | [optional] 
 **source_address** | [**\MessageMedia\RESTAPI\Model\SourceAddressBody**](SourceAddressBody.md) |  | [optional] 
 **action** | [**\MessageMedia\RESTAPI\Model\ActionBody**](ActionBody.md) |  | [optional] 
+**delivery_options** | [**\MessageMedia\RESTAPI\Model\DeliveryOptionsBody**](DeliveryOptionsBody.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

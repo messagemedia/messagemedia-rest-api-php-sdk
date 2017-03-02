@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **source_address** | [**\MessageMedia\RESTAPI\Model\SourceAddressBody**](SourceAddressBody.md) |  | [optional] 
 **delivery_report** | [**\MessageMedia\RESTAPI\Model\DeliveryReportBody**](DeliveryReportBody.md) |  | [optional] 
 **status_code** | [**\MessageMedia\RESTAPI\Model\StatusCodeBody**](StatusCodeBody.md) |  | [optional] 
+**delivery_options** | [**\MessageMedia\RESTAPI\Model\DeliveryOptionsBody**](DeliveryOptionsBody.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

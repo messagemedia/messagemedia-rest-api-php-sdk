@@ -216,4 +216,12 @@ class AsyncReceivedMessagesSummaryRequestTest extends \PHPUnit_Framework_TestCas
 
     }
 
+    /**
+     * Test attribute "delivery_options"
+     */
+    public function testPropertyDeliveryOptions()
+    {
+
+    }
+
 }

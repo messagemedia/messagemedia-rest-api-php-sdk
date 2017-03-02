@@ -74,7 +74,8 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
         'source_address_country' => '\MessageMedia\RESTAPI\Model\SourceAddressCountryBody',
         'source_address' => '\MessageMedia\RESTAPI\Model\SourceAddressBody',
         'delivery_report' => '\MessageMedia\RESTAPI\Model\DeliveryReportBody',
-        'status_code' => '\MessageMedia\RESTAPI\Model\StatusCodeBody'
+        'status_code' => '\MessageMedia\RESTAPI\Model\StatusCodeBody',
+        'delivery_options' => '\MessageMedia\RESTAPI\Model\DeliveryOptionsBody'
     );
 
     public static function types()
@@ -102,7 +103,8 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
         'source_address_country' => 'source_address_country',
         'source_address' => 'source_address',
         'delivery_report' => 'delivery_report',
-        'status_code' => 'status_code'
+        'status_code' => 'status_code',
+        'delivery_options' => 'delivery_options'
     );
 
     public static function attributeMap()
@@ -130,7 +132,8 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
         'source_address_country' => 'setSourceAddressCountry',
         'source_address' => 'setSourceAddress',
         'delivery_report' => 'setDeliveryReport',
-        'status_code' => 'setStatusCode'
+        'status_code' => 'setStatusCode',
+        'delivery_options' => 'setDeliveryOptions'
     );
 
     public static function setters()
@@ -158,7 +161,8 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
         'source_address_country' => 'getSourceAddressCountry',
         'source_address' => 'getSourceAddress',
         'delivery_report' => 'getDeliveryReport',
-        'status_code' => 'getStatusCode'
+        'status_code' => 'getStatusCode',
+        'delivery_options' => 'getDeliveryOptions'
     );
 
     public static function getters()
@@ -238,6 +242,7 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
         $this->container['source_address'] = isset($data['source_address']) ? $data['source_address'] : null;
         $this->container['delivery_report'] = isset($data['delivery_report']) ? $data['delivery_report'] : null;
         $this->container['status_code'] = isset($data['status_code']) ? $data['status_code'] : null;
+        $this->container['delivery_options'] = isset($data['delivery_options']) ? $data['delivery_options'] : null;
     }
 
     /**
@@ -608,6 +613,27 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
     public function setStatusCode($status_code)
     {
         $this->container['status_code'] = $status_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivery_options
+     * @return \MessageMedia\RESTAPI\Model\DeliveryOptionsBody
+     */
+    public function getDeliveryOptions()
+    {
+        return $this->container['delivery_options'];
+    }
+
+    /**
+     * Sets delivery_options
+     * @param \MessageMedia\RESTAPI\Model\DeliveryOptionsBody $delivery_options
+     * @return $this
+     */
+    public function setDeliveryOptions($delivery_options)
+    {
+        $this->container['delivery_options'] = $delivery_options;
 
         return $this;
     }

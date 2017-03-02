@@ -73,7 +73,8 @@ class AsyncDeliveryReportDetailRequest implements ArrayAccess
         'status_code' => '\MessageMedia\RESTAPI\Model\StatusCodeBody',
         'status' => '\MessageMedia\RESTAPI\Model\StatusBody',
         'source_address_country' => '\MessageMedia\RESTAPI\Model\SourceAddressCountryBody',
-        'source_address' => '\MessageMedia\RESTAPI\Model\SourceAddressBody'
+        'source_address' => '\MessageMedia\RESTAPI\Model\SourceAddressBody',
+        'delivery_options' => '\MessageMedia\RESTAPI\Model\DeliveryOptionsBody'
     );
 
     public static function types()
@@ -100,7 +101,8 @@ class AsyncDeliveryReportDetailRequest implements ArrayAccess
         'status_code' => 'status_code',
         'status' => 'status',
         'source_address_country' => 'source_address_country',
-        'source_address' => 'source_address'
+        'source_address' => 'source_address',
+        'delivery_options' => 'delivery_options'
     );
 
     public static function attributeMap()
@@ -127,7 +129,8 @@ class AsyncDeliveryReportDetailRequest implements ArrayAccess
         'status_code' => 'setStatusCode',
         'status' => 'setStatus',
         'source_address_country' => 'setSourceAddressCountry',
-        'source_address' => 'setSourceAddress'
+        'source_address' => 'setSourceAddress',
+        'delivery_options' => 'setDeliveryOptions'
     );
 
     public static function setters()
@@ -154,7 +157,8 @@ class AsyncDeliveryReportDetailRequest implements ArrayAccess
         'status_code' => 'getStatusCode',
         'status' => 'getStatus',
         'source_address_country' => 'getSourceAddressCountry',
-        'source_address' => 'getSourceAddress'
+        'source_address' => 'getSourceAddress',
+        'delivery_options' => 'getDeliveryOptions'
     );
 
     public static function getters()
@@ -221,6 +225,7 @@ class AsyncDeliveryReportDetailRequest implements ArrayAccess
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['source_address_country'] = isset($data['source_address_country']) ? $data['source_address_country'] : null;
         $this->container['source_address'] = isset($data['source_address']) ? $data['source_address'] : null;
+        $this->container['delivery_options'] = isset($data['delivery_options']) ? $data['delivery_options'] : null;
     }
 
     /**
@@ -570,6 +575,27 @@ class AsyncDeliveryReportDetailRequest implements ArrayAccess
     public function setSourceAddress($source_address)
     {
         $this->container['source_address'] = $source_address;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivery_options
+     * @return \MessageMedia\RESTAPI\Model\DeliveryOptionsBody
+     */
+    public function getDeliveryOptions()
+    {
+        return $this->container['delivery_options'];
+    }
+
+    /**
+     * Sets delivery_options
+     * @param \MessageMedia\RESTAPI\Model\DeliveryOptionsBody $delivery_options
+     * @return $this
+     */
+    public function setDeliveryOptions($delivery_options)
+    {
+        $this->container['delivery_options'] = $delivery_options;
 
         return $this;
     }
