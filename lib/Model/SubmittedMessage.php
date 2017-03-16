@@ -119,6 +119,7 @@ class SubmittedMessage implements ArrayAccess
     const STATUS_QUEUED = 'queued';
     const STATUS_CANCELLED = 'cancelled';
     const STATUS_SCHEDULED = 'scheduled';
+    const STATUS_FAILED = 'failed';
     
 
     
@@ -138,6 +139,7 @@ class SubmittedMessage implements ArrayAccess
             self::STATUS_QUEUED,
             self::STATUS_CANCELLED,
             self::STATUS_SCHEDULED,
+            self::STATUS_FAILED,
         ];
     }
     
@@ -166,7 +168,7 @@ class SubmittedMessage implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = array();
-        $allowed_values = array("enroute", "submitted", "delivered", "expired", "rejected", "undeliverable", "queued", "cancelled", "scheduled");
+        $allowed_values = array("enroute", "submitted", "delivered", "expired", "rejected", "undeliverable", "queued", "cancelled", "scheduled", "failed");
         if (!in_array($this->container['status'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'status', must be one of #{allowed_values}.";
         }
@@ -182,7 +184,7 @@ class SubmittedMessage implements ArrayAccess
      */
     public function valid()
     {
-        $allowed_values = array("enroute", "submitted", "delivered", "expired", "rejected", "undeliverable", "queued", "cancelled", "scheduled");
+        $allowed_values = array("enroute", "submitted", "delivered", "expired", "rejected", "undeliverable", "queued", "cancelled", "scheduled", "failed");
         if (!in_array($this->container['status'], $allowed_values)) {
             return false;
         }
@@ -227,9 +229,9 @@ class SubmittedMessage implements ArrayAccess
      */
     public function setStatus($status)
     {
-        $allowed_values = array('enroute', 'submitted', 'delivered', 'expired', 'rejected', 'undeliverable', 'queued', 'cancelled', 'scheduled');
+        $allowed_values = array('enroute', 'submitted', 'delivered', 'expired', 'rejected', 'undeliverable', 'queued', 'cancelled', 'scheduled', 'failed');
         if (!in_array($status, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'status', must be one of 'enroute', 'submitted', 'delivered', 'expired', 'rejected', 'undeliverable', 'queued', 'cancelled', 'scheduled'");
+            throw new \InvalidArgumentException("Invalid value for 'status', must be one of 'enroute', 'submitted', 'delivered', 'expired', 'rejected', 'undeliverable', 'queued', 'cancelled', 'scheduled', 'failed'");
         }
         $this->container['status'] = $status;
 
