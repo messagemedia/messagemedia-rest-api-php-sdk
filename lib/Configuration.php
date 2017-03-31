@@ -499,7 +499,7 @@ class Configuration
      */
     public function getProxy()
     {
-        $this->proxy;
+        return $this->proxy;
     }
 
     /**
