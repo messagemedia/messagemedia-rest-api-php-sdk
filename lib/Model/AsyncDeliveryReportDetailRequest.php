@@ -72,6 +72,7 @@ class AsyncDeliveryReportDetailRequest implements ArrayAccess
         'metadata_value' => '\MessageMedia\RESTAPI\Model\MetadataValueBody',
         'status_code' => '\MessageMedia\RESTAPI\Model\StatusCodeBody',
         'status' => '\MessageMedia\RESTAPI\Model\StatusBody',
+        'statuses' => '\MessageMedia\RESTAPI\Model\StatusesBody',
         'source_address_country' => '\MessageMedia\RESTAPI\Model\SourceAddressCountryBody',
         'source_address' => '\MessageMedia\RESTAPI\Model\SourceAddressBody',
         'delivery_options' => '\MessageMedia\RESTAPI\Model\DeliveryOptionsBody'
@@ -100,6 +101,7 @@ class AsyncDeliveryReportDetailRequest implements ArrayAccess
         'metadata_value' => 'metadata_value',
         'status_code' => 'status_code',
         'status' => 'status',
+        'statuses' => 'statuses',
         'source_address_country' => 'source_address_country',
         'source_address' => 'source_address',
         'delivery_options' => 'delivery_options'
@@ -128,6 +130,7 @@ class AsyncDeliveryReportDetailRequest implements ArrayAccess
         'metadata_value' => 'setMetadataValue',
         'status_code' => 'setStatusCode',
         'status' => 'setStatus',
+        'statuses' => 'setStatuses',
         'source_address_country' => 'setSourceAddressCountry',
         'source_address' => 'setSourceAddress',
         'delivery_options' => 'setDeliveryOptions'
@@ -156,6 +159,7 @@ class AsyncDeliveryReportDetailRequest implements ArrayAccess
         'metadata_value' => 'getMetadataValue',
         'status_code' => 'getStatusCode',
         'status' => 'getStatus',
+        'statuses' => 'getStatuses',
         'source_address_country' => 'getSourceAddressCountry',
         'source_address' => 'getSourceAddress',
         'delivery_options' => 'getDeliveryOptions'
@@ -223,6 +227,7 @@ class AsyncDeliveryReportDetailRequest implements ArrayAccess
         $this->container['metadata_value'] = isset($data['metadata_value']) ? $data['metadata_value'] : null;
         $this->container['status_code'] = isset($data['status_code']) ? $data['status_code'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['statuses'] = isset($data['statuses']) ? $data['statuses'] : null;
         $this->container['source_address_country'] = isset($data['source_address_country']) ? $data['source_address_country'] : null;
         $this->container['source_address'] = isset($data['source_address']) ? $data['source_address'] : null;
         $this->container['delivery_options'] = isset($data['delivery_options']) ? $data['delivery_options'] : null;
@@ -533,6 +538,27 @@ class AsyncDeliveryReportDetailRequest implements ArrayAccess
     public function setStatus($status)
     {
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets statuses
+     * @return \MessageMedia\RESTAPI\Model\StatusesBody
+     */
+    public function getStatuses()
+    {
+        return $this->container['statuses'];
+    }
+
+    /**
+     * Sets statuses
+     * @param \MessageMedia\RESTAPI\Model\StatusesBody $statuses
+     * @return $this
+     */
+    public function setStatuses($statuses)
+    {
+        $this->container['statuses'] = $statuses;
 
         return $this;
     }

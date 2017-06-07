@@ -70,7 +70,7 @@ class DeliveryReport implements ArrayAccess
         'source_address' => 'string',
         'source_address_country' => 'string',
         'status' => 'string',
-        'status_code' => '\MessageMedia\RESTAPI\Model\MessageStatusCode',
+        'status_code' => 'string',
         'timestamp' => '\DateTime'
     );
 
@@ -548,7 +548,7 @@ class DeliveryReport implements ArrayAccess
 
     /**
      * Gets status_code
-     * @return \MessageMedia\RESTAPI\Model\MessageStatusCode
+     * @return string
      */
     public function getStatusCode()
     {
@@ -557,7 +557,7 @@ class DeliveryReport implements ArrayAccess
 
     /**
      * Sets status_code
-     * @param \MessageMedia\RESTAPI\Model\MessageStatusCode $status_code
+     * @param string $status_code Status code of the message
      * @return $this
      */
     public function setStatusCode($status_code)

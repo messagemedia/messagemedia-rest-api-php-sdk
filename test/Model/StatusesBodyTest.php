@@ -1,6 +1,6 @@
 <?php
 /**
- * SummaryReportDataTest
+ * StatusesBodyTest
  *
  * PHP version 5
  *
@@ -37,15 +37,15 @@
 namespace MessageMedia\RESTAPI;
 
 /**
- * SummaryReportDataTest Class Doc Comment
+ * StatusesBodyTest Class Doc Comment
  *
  * @category    Class */
-// * @description SummaryReportData
+// * @description Filter results by message statuses. Can&#39;t be combined with status.
 /**
  * @package     MessageMedia\RESTAPI
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  */
-class SummaryReportDataTest extends \PHPUnit_Framework_TestCase
+class StatusesBodyTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -81,25 +81,9 @@ class SummaryReportDataTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "SummaryReportData"
+     * Test "StatusesBody"
      */
-    public function testSummaryReportData()
-    {
-
-    }
-
-    /**
-     * Test attribute "group"
-     */
-    public function testPropertyGroup()
-    {
-
-    }
-
-    /**
-     * Test attribute "value"
-     */
-    public function testPropertyValue()
+    public function testStatusesBody()
     {
 
     }

@@ -385,7 +385,8 @@ class MessagingReportsApi
      * @param string $metadata_key Filter results for messages that include a metadata key. (optional)
      * @param string $metadata_value Filter results for messages that include a metadata key containing this value. If this parameter is provided, the metadata_key parameter must also be provided. (optional)
      * @param string $status_code Filter results by message status code. (optional)
-     * @param string $status Filter results by message status. (optional)
+     * @param string $status Filter results by message status. Can&#39;t be combined with statuses. (optional)
+     * @param string[] $statuses Filter results by message status. Can&#39;t be combined with status. (optional)
      * @param int $page Page number for paging through paginated result sets. (optional)
      * @param int $page_size Number of results to return in a page for paginated result sets. (optional)
      * @param string $sort_by Field to sort results set by (optional)
@@ -396,9 +397,9 @@ class MessagingReportsApi
      * @return \MessageMedia\RESTAPI\Model\DeliveryReports
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getDeliveryReportsDetail($end_date, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getDeliveryReportsDetail($end_date, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $statuses = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
-        list($response) = $this->getDeliveryReportsDetailWithHttpInfo($end_date, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
+        list($response) = $this->getDeliveryReportsDetailWithHttpInfo($end_date, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $statuses, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
         return $response;
     }
 
@@ -416,7 +417,8 @@ class MessagingReportsApi
      * @param string $metadata_key Filter results for messages that include a metadata key. (optional)
      * @param string $metadata_value Filter results for messages that include a metadata key containing this value. If this parameter is provided, the metadata_key parameter must also be provided. (optional)
      * @param string $status_code Filter results by message status code. (optional)
-     * @param string $status Filter results by message status. (optional)
+     * @param string $status Filter results by message status. Can&#39;t be combined with statuses. (optional)
+     * @param string[] $statuses Filter results by message status. Can&#39;t be combined with status. (optional)
      * @param int $page Page number for paging through paginated result sets. (optional)
      * @param int $page_size Number of results to return in a page for paginated result sets. (optional)
      * @param string $sort_by Field to sort results set by (optional)
@@ -427,7 +429,7 @@ class MessagingReportsApi
      * @return Array of \MessageMedia\RESTAPI\Model\DeliveryReports, HTTP status code, HTTP response headers (array of strings)
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getDeliveryReportsDetailWithHttpInfo($end_date, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getDeliveryReportsDetailWithHttpInfo($end_date, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $statuses = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
         // verify the required parameter 'end_date' is set
         if ($end_date === null) {
@@ -477,6 +479,13 @@ class MessagingReportsApi
         }
         if (!is_null($status) && (strlen($status) < 1)) {
             throw new \InvalidArgumentException('invalid length for "$status" when calling MessagingReportsApi.getDeliveryReportsDetail, must be bigger than or equal to 1.');
+        }
+
+        if (!is_null($statuses) && (strlen($statuses) > 15)) {
+            throw new \InvalidArgumentException('invalid length for "$statuses" when calling MessagingReportsApi.getDeliveryReportsDetail, must be smaller than or equal to 15.');
+        }
+        if (!is_null($statuses) && (strlen($statuses) < 1)) {
+            throw new \InvalidArgumentException('invalid length for "$statuses" when calling MessagingReportsApi.getDeliveryReportsDetail, must be bigger than or equal to 1.');
         }
 
         if (!is_null($page) && ($page < 1.0)) {
@@ -544,6 +553,13 @@ class MessagingReportsApi
         // query params
         if ($status !== null) {
             $queryParams['status'] = $this->apiClient->getSerializer()->toQueryValue($status);
+        }
+        // query params
+        if (is_array($statuses)) {
+            $statuses = $this->apiClient->getSerializer()->serializeCollection($statuses, 'multi', true);
+        }
+        if ($statuses !== null) {
+            $queryParams['statuses'] = $this->apiClient->getSerializer()->toQueryValue($statuses);
         }
         // query params
         if ($page !== null) {
@@ -622,7 +638,7 @@ class MessagingReportsApi
      * Returns a summarised report of delivery reports
      *
      * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
-     * @param string $group_by Field to group results set by (required)
+     * @param string[] $group_by List of fields to group results set by (required)
      * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
      * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
@@ -631,7 +647,8 @@ class MessagingReportsApi
      * @param string $metadata_key Filter results for messages that include a metadata key. (optional)
      * @param string $metadata_value Filter results for messages that include a metadata key containing this value. If this parameter is provided, the metadata_key parameter must also be provided. (optional)
      * @param string $status_code Filter results by message status code. (optional)
-     * @param string $status Filter results by message status. (optional)
+     * @param string $status Filter results by message status. Can&#39;t be combined with statuses. (optional)
+     * @param string[] $statuses Filter results by message status. Can&#39;t be combined with status. (optional)
      * @param string $summary_by Function to apply when summarising results (optional)
      * @param string $summary_field Field to summarise results by (optional)
      * @param string $source_address_country Filter results by source address country. (optional)
@@ -640,9 +657,9 @@ class MessagingReportsApi
      * @return \MessageMedia\RESTAPI\Model\SummaryReport
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getDeliveryReportsSummary($end_date, $group_by, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $summary_by = null, $summary_field = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getDeliveryReportsSummary($end_date, $group_by, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $statuses = null, $summary_by = null, $summary_field = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
-        list($response) = $this->getDeliveryReportsSummaryWithHttpInfo($end_date, $group_by, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $summary_by, $summary_field, $source_address_country, $source_address, $timezone);
+        list($response) = $this->getDeliveryReportsSummaryWithHttpInfo($end_date, $group_by, $start_date, $accounts, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $statuses, $summary_by, $summary_field, $source_address_country, $source_address, $timezone);
         return $response;
     }
 
@@ -652,7 +669,7 @@ class MessagingReportsApi
      * Returns a summarised report of delivery reports
      *
      * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
-     * @param string $group_by Field to group results set by (required)
+     * @param string[] $group_by List of fields to group results set by (required)
      * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
      * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
@@ -661,7 +678,8 @@ class MessagingReportsApi
      * @param string $metadata_key Filter results for messages that include a metadata key. (optional)
      * @param string $metadata_value Filter results for messages that include a metadata key containing this value. If this parameter is provided, the metadata_key parameter must also be provided. (optional)
      * @param string $status_code Filter results by message status code. (optional)
-     * @param string $status Filter results by message status. (optional)
+     * @param string $status Filter results by message status. Can&#39;t be combined with statuses. (optional)
+     * @param string[] $statuses Filter results by message status. Can&#39;t be combined with status. (optional)
      * @param string $summary_by Function to apply when summarising results (optional)
      * @param string $summary_field Field to summarise results by (optional)
      * @param string $source_address_country Filter results by source address country. (optional)
@@ -670,7 +688,7 @@ class MessagingReportsApi
      * @return Array of \MessageMedia\RESTAPI\Model\SummaryReport, HTTP status code, HTTP response headers (array of strings)
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getDeliveryReportsSummaryWithHttpInfo($end_date, $group_by, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $summary_by = null, $summary_field = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getDeliveryReportsSummaryWithHttpInfo($end_date, $group_by, $start_date, $accounts = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $statuses = null, $summary_by = null, $summary_field = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
         // verify the required parameter 'end_date' is set
         if ($end_date === null) {
@@ -724,6 +742,13 @@ class MessagingReportsApi
         }
         if (!is_null($status) && (strlen($status) < 1)) {
             throw new \InvalidArgumentException('invalid length for "$status" when calling MessagingReportsApi.getDeliveryReportsSummary, must be bigger than or equal to 1.');
+        }
+
+        if (!is_null($statuses) && (strlen($statuses) > 15)) {
+            throw new \InvalidArgumentException('invalid length for "$statuses" when calling MessagingReportsApi.getDeliveryReportsSummary, must be smaller than or equal to 15.');
+        }
+        if (!is_null($statuses) && (strlen($statuses) < 1)) {
+            throw new \InvalidArgumentException('invalid length for "$statuses" when calling MessagingReportsApi.getDeliveryReportsSummary, must be bigger than or equal to 1.');
         }
 
         if (!is_null($source_address) && (strlen($source_address) > 15)) {
@@ -782,6 +807,13 @@ class MessagingReportsApi
             $queryParams['status'] = $this->apiClient->getSerializer()->toQueryValue($status);
         }
         // query params
+        if (is_array($statuses)) {
+            $statuses = $this->apiClient->getSerializer()->serializeCollection($statuses, 'multi', true);
+        }
+        if ($statuses !== null) {
+            $queryParams['statuses'] = $this->apiClient->getSerializer()->toQueryValue($statuses);
+        }
+        // query params
         if ($summary_by !== null) {
             $queryParams['summary_by'] = $this->apiClient->getSerializer()->toQueryValue($summary_by);
         }
@@ -790,6 +822,9 @@ class MessagingReportsApi
             $queryParams['summary_field'] = $this->apiClient->getSerializer()->toQueryValue($summary_field);
         }
         // query params
+        if (is_array($group_by)) {
+            $group_by = $this->apiClient->getSerializer()->serializeCollection($group_by, 'multi', true);
+        }
         if ($group_by !== null) {
             $queryParams['group_by'] = $this->apiClient->getSerializer()->toQueryValue($group_by);
         }
@@ -1207,7 +1242,7 @@ class MessagingReportsApi
      * Returns a summarised report of messages received
      *
      * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
-     * @param string $group_by Field to group results set by (required)
+     * @param string[] $group_by List of fields to group results set by (required)
      * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
      * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
@@ -1235,7 +1270,7 @@ class MessagingReportsApi
      * Returns a summarised report of messages received
      *
      * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
-     * @param string $group_by Field to group results set by (required)
+     * @param string[] $group_by List of fields to group results set by (required)
      * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
      * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param string $destination_address_country Filter results by destination address country. (optional)
@@ -1349,6 +1384,9 @@ class MessagingReportsApi
             $queryParams['summary_field'] = $this->apiClient->getSerializer()->toQueryValue($summary_field);
         }
         // query params
+        if (is_array($group_by)) {
+            $group_by = $this->apiClient->getSerializer()->serializeCollection($group_by, 'multi', true);
+        }
         if ($group_by !== null) {
             $queryParams['group_by'] = $this->apiClient->getSerializer()->toQueryValue($group_by);
         }
@@ -1422,7 +1460,8 @@ class MessagingReportsApi
      * @param string $metadata_key Filter results for messages that include a metadata key. (optional)
      * @param string $metadata_value Filter results for messages that include a metadata key containing this value. If this parameter is provided, the metadata_key parameter must also be provided. (optional)
      * @param string $status_code Filter results by message status code. (optional)
-     * @param string $status Filter results by message status. (optional)
+     * @param string $status Filter results by message status. Can&#39;t be combined with statuses. (optional)
+     * @param string[] $statuses Filter results by message status. Can&#39;t be combined with status. (optional)
      * @param int $page Page number for paging through paginated result sets. (optional)
      * @param int $page_size Number of results to return in a page for paginated result sets. (optional)
      * @param string $sort_by Field to sort results set by (optional)
@@ -1433,9 +1472,9 @@ class MessagingReportsApi
      * @return \MessageMedia\RESTAPI\Model\SentMessages
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getSentMessagesDetail($end_date, $start_date, $accounts = null, $delivery_report = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getSentMessagesDetail($end_date, $start_date, $accounts = null, $delivery_report = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $statuses = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
-        list($response) = $this->getSentMessagesDetailWithHttpInfo($end_date, $start_date, $accounts, $delivery_report, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
+        list($response) = $this->getSentMessagesDetailWithHttpInfo($end_date, $start_date, $accounts, $delivery_report, $destination_address_country, $destination_address, $message_format, $metadata_key, $metadata_value, $status_code, $status, $statuses, $page, $page_size, $sort_by, $sort_direction, $source_address_country, $source_address, $timezone);
         return $response;
     }
 
@@ -1454,7 +1493,8 @@ class MessagingReportsApi
      * @param string $metadata_key Filter results for messages that include a metadata key. (optional)
      * @param string $metadata_value Filter results for messages that include a metadata key containing this value. If this parameter is provided, the metadata_key parameter must also be provided. (optional)
      * @param string $status_code Filter results by message status code. (optional)
-     * @param string $status Filter results by message status. (optional)
+     * @param string $status Filter results by message status. Can&#39;t be combined with statuses. (optional)
+     * @param string[] $statuses Filter results by message status. Can&#39;t be combined with status. (optional)
      * @param int $page Page number for paging through paginated result sets. (optional)
      * @param int $page_size Number of results to return in a page for paginated result sets. (optional)
      * @param string $sort_by Field to sort results set by (optional)
@@ -1465,7 +1505,7 @@ class MessagingReportsApi
      * @return Array of \MessageMedia\RESTAPI\Model\SentMessages, HTTP status code, HTTP response headers (array of strings)
      * @throws \MessageMedia\RESTAPI\ApiException on non-2xx response
      */
-    public function getSentMessagesDetailWithHttpInfo($end_date, $start_date, $accounts = null, $delivery_report = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
+    public function getSentMessagesDetailWithHttpInfo($end_date, $start_date, $accounts = null, $delivery_report = null, $destination_address_country = null, $destination_address = null, $message_format = null, $metadata_key = null, $metadata_value = null, $status_code = null, $status = null, $statuses = null, $page = null, $page_size = null, $sort_by = null, $sort_direction = null, $source_address_country = null, $source_address = null, $timezone = null)
     {
         // verify the required parameter 'end_date' is set
         if ($end_date === null) {
@@ -1515,6 +1555,13 @@ class MessagingReportsApi
         }
         if (!is_null($status) && (strlen($status) < 1)) {
             throw new \InvalidArgumentException('invalid length for "$status" when calling MessagingReportsApi.getSentMessagesDetail, must be bigger than or equal to 1.');
+        }
+
+        if (!is_null($statuses) && (strlen($statuses) > 15)) {
+            throw new \InvalidArgumentException('invalid length for "$statuses" when calling MessagingReportsApi.getSentMessagesDetail, must be smaller than or equal to 15.');
+        }
+        if (!is_null($statuses) && (strlen($statuses) < 1)) {
+            throw new \InvalidArgumentException('invalid length for "$statuses" when calling MessagingReportsApi.getSentMessagesDetail, must be bigger than or equal to 1.');
         }
 
         if (!is_null($page) && ($page < 1.0)) {
@@ -1586,6 +1633,13 @@ class MessagingReportsApi
         // query params
         if ($status !== null) {
             $queryParams['status'] = $this->apiClient->getSerializer()->toQueryValue($status);
+        }
+        // query params
+        if (is_array($statuses)) {
+            $statuses = $this->apiClient->getSerializer()->serializeCollection($statuses, 'multi', true);
+        }
+        if ($statuses !== null) {
+            $queryParams['statuses'] = $this->apiClient->getSerializer()->toQueryValue($statuses);
         }
         // query params
         if ($page !== null) {
@@ -1664,7 +1718,7 @@ class MessagingReportsApi
      * Returns a summarised report of messages sent
      *
      * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
-     * @param string $group_by Field to group results set by (required)
+     * @param string[] $group_by List of fields to group results set by (required)
      * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
      * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param bool $delivery_report Filter results by delivery report. (optional)
@@ -1694,7 +1748,7 @@ class MessagingReportsApi
      * Returns a summarised report of messages sent
      *
      * @param string $end_date End date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
-     * @param string $group_by Field to group results set by (required)
+     * @param string[] $group_by List of fields to group results set by (required)
      * @param string $start_date Start date time for report window. By default, the timezone for this parameter will be taken from the account settings for the account associated with the credentials used to make the request, or the account included in the Account parameter. This can be overridden using the timezone parameter per request. The date must be in the format of \&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss\&quot;, e.g. \&quot;2017-02-10T13:30:00\&quot;. (required)
      * @param string $accounts Filter results by a specific account. By default results will be returned for the account associated with the authentication credentials and all sub accounts. (optional)
      * @param bool $delivery_report Filter results by delivery report. (optional)
@@ -1809,6 +1863,9 @@ class MessagingReportsApi
             $queryParams['summary_field'] = $this->apiClient->getSerializer()->toQueryValue($summary_field);
         }
         // query params
+        if (is_array($group_by)) {
+            $group_by = $this->apiClient->getSerializer()->serializeCollection($group_by, 'multi', true);
+        }
         if ($group_by !== null) {
             $queryParams['group_by'] = $this->apiClient->getSerializer()->toQueryValue($group_by);
         }

@@ -209,6 +209,14 @@ class AsyncDeliveryReportsSummaryRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "statuses"
+     */
+    public function testPropertyStatuses()
+    {
+
+    }
+
+    /**
      * Test attribute "status_code"
      */
     public function testPropertyStatusCode()

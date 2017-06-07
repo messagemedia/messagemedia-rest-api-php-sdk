@@ -61,7 +61,7 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
     protected static $types = array(
         'summary_by' => '\MessageMedia\RESTAPI\Model\SummaryByBody',
         'summary_field' => '\MessageMedia\RESTAPI\Model\SummaryFieldBody',
-        'group_by' => 'string',
+        'group_by' => 'string[]',
         'start_date' => '\MessageMedia\RESTAPI\Model\StartDateBody',
         'end_date' => '\MessageMedia\RESTAPI\Model\EndDateBody',
         'timezone' => '\MessageMedia\RESTAPI\Model\TimezoneBody',
@@ -185,6 +185,7 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
     const GROUP_BY_STATUS = 'STATUS';
     const GROUP_BY_STATUS_CODE = 'STATUS_CODE';
     const GROUP_BY_YEAR = 'YEAR';
+    const GROUP_BY_ACCOUNT = 'ACCOUNT';
     
 
     
@@ -210,6 +211,7 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
             self::GROUP_BY_STATUS,
             self::GROUP_BY_STATUS_CODE,
             self::GROUP_BY_YEAR,
+            self::GROUP_BY_ACCOUNT,
         ];
     }
     
@@ -253,11 +255,6 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = array();
-        $allowed_values = array("DAY", "DELIVERY_REPORT", "DESTINATION_ADDRESS", "DESTINATION_ADDRESS_COUNTRY", "FORMAT", "HOUR", "METADATA_KEY", "METADATA_VALUE", "MINUTE", "MONTH", "SOURCE_ADDRESS", "SOURCE_ADDRESS_COUNTRY", "STATUS", "STATUS_CODE", "YEAR");
-        if (!in_array($this->container['group_by'], $allowed_values)) {
-            $invalid_properties[] = "invalid value for 'group_by', must be one of #{allowed_values}.";
-        }
-
         return $invalid_properties;
     }
 
@@ -269,10 +266,6 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
      */
     public function valid()
     {
-        $allowed_values = array("DAY", "DELIVERY_REPORT", "DESTINATION_ADDRESS", "DESTINATION_ADDRESS_COUNTRY", "FORMAT", "HOUR", "METADATA_KEY", "METADATA_VALUE", "MINUTE", "MONTH", "SOURCE_ADDRESS", "SOURCE_ADDRESS_COUNTRY", "STATUS", "STATUS_CODE", "YEAR");
-        if (!in_array($this->container['group_by'], $allowed_values)) {
-            return false;
-        }
         return true;
     }
 
@@ -321,7 +314,7 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
 
     /**
      * Gets group_by
-     * @return string
+     * @return string[]
      */
     public function getGroupBy()
     {
@@ -330,14 +323,14 @@ class AsyncDeliverySentMessagesRequest implements ArrayAccess
 
     /**
      * Sets group_by
-     * @param string $group_by Field to group results set by
+     * @param string[] $group_by List of fields to group results set by
      * @return $this
      */
     public function setGroupBy($group_by)
     {
-        $allowed_values = array('DAY', 'DELIVERY_REPORT', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'HOUR', 'METADATA_KEY', 'METADATA_VALUE', 'MINUTE', 'MONTH', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'STATUS', 'STATUS_CODE', 'YEAR');
+        $allowed_values = array('DAY', 'DELIVERY_REPORT', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'HOUR', 'METADATA_KEY', 'METADATA_VALUE', 'MINUTE', 'MONTH', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'STATUS', 'STATUS_CODE', 'YEAR', 'ACCOUNT');
         if (!in_array($group_by, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'group_by', must be one of 'DAY', 'DELIVERY_REPORT', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'HOUR', 'METADATA_KEY', 'METADATA_VALUE', 'MINUTE', 'MONTH', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'STATUS', 'STATUS_CODE', 'YEAR'");
+            throw new \InvalidArgumentException("Invalid value for 'group_by', must be one of 'DAY', 'DELIVERY_REPORT', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'HOUR', 'METADATA_KEY', 'METADATA_VALUE', 'MINUTE', 'MONTH', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'STATUS', 'STATUS_CODE', 'YEAR', 'ACCOUNT'");
         }
         $this->container['group_by'] = $group_by;
 

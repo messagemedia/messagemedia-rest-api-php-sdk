@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **source_address_country** | [**\MessageMedia\RESTAPI\Model\SourceAddressCountryBody**](SourceAddressCountryBody.md) |  | [optional] 
 **source_address** | [**\MessageMedia\RESTAPI\Model\SourceAddressBody**](SourceAddressBody.md) |  | [optional] 
 **status** | [**\MessageMedia\RESTAPI\Model\StatusBody**](StatusBody.md) |  | [optional] 
+**statuses** | [**\MessageMedia\RESTAPI\Model\StatusesBody**](StatusesBody.md) |  | [optional] 
 **status_code** | [**\MessageMedia\RESTAPI\Model\StatusCodeBody**](StatusCodeBody.md) |  | [optional] 
 **delivery_report** | [**\MessageMedia\RESTAPI\Model\DeliveryReportBody**](DeliveryReportBody.md) |  | [optional] 
 **delivery_options** | [**\MessageMedia\RESTAPI\Model\DeliveryOptionsBody**](DeliveryOptionsBody.md) |  | [optional] 

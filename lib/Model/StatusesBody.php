@@ -1,6 +1,6 @@
 <?php
 /**
- * SummaryReportData
+ * StatusesBody
  *
  * PHP version 5
  *
@@ -39,28 +39,28 @@ namespace MessageMedia\RESTAPI\Model;
 use \ArrayAccess;
 
 /**
- * SummaryReportData Class Doc Comment
+ * StatusesBody Class Doc Comment
  *
  * @category    Class */
+ // @description Filter results by message statuses. Can&#39;t be combined with status.
 /** 
  * @package     MessageMedia\RESTAPI
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  */
-class SummaryReportData implements ArrayAccess
+class StatusesBody implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $modelName = 'SummaryReport_data';
+    protected static $modelName = 'statusesBody';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $types = array(
-        'group' => 'string',
-        'value' => 'int'
+        
     );
 
     public static function types()
@@ -73,8 +73,7 @@ class SummaryReportData implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'group' => 'group',
-        'value' => 'value'
+        
     );
 
     public static function attributeMap()
@@ -87,8 +86,7 @@ class SummaryReportData implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'group' => 'setGroup',
-        'value' => 'setValue'
+        
     );
 
     public static function setters()
@@ -101,8 +99,7 @@ class SummaryReportData implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'group' => 'getGroup',
-        'value' => 'getValue'
+        
     );
 
     public static function getters()
@@ -126,8 +123,6 @@ class SummaryReportData implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['group'] = isset($data['group']) ? $data['group'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
     }
 
     /**
@@ -152,48 +147,6 @@ class SummaryReportData implements ArrayAccess
         return true;
     }
 
-
-    /**
-     * Gets group
-     * @return string
-     */
-    public function getGroup()
-    {
-        return $this->container['group'];
-    }
-
-    /**
-     * Sets group
-     * @param string $group
-     * @return $this
-     */
-    public function setGroup($group)
-    {
-        $this->container['group'] = $group;
-
-        return $this;
-    }
-
-    /**
-     * Gets value
-     * @return int
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     * @param int $value
-     * @return $this
-     */
-    public function setValue($value)
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      * @param  integer $offset Offset

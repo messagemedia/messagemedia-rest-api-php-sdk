@@ -40,7 +40,7 @@ namespace MessageMedia\RESTAPI;
  * StatusBodyTest Class Doc Comment
  *
  * @category    Class */
-// * @description Filter results by message status.
+// * @description Filter results by message status. Can&#39;t be combined with statuses.
 /**
  * @package     MessageMedia\RESTAPI
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2

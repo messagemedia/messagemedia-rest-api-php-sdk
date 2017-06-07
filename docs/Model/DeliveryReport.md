@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **source_address** | **string** | Address this delivery report was received from, the destination address of the sent message that this delivery report is in response to | [optional] 
 **source_address_country** | **string** | Country associated with the source address | [optional] 
 **status** | **string** | Status of the message | [optional] 
-**status_code** | [**\MessageMedia\RESTAPI\Model\MessageStatusCode**](MessageStatusCode.md) |  | [optional] 
+**status_code** | **string** | Status code of the message | [optional] 
 **timestamp** | [**\DateTime**](\DateTime.md) | Date time at which this delivery report was received | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

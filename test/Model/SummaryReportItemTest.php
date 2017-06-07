@@ -1,6 +1,6 @@
 <?php
 /**
- * MessageStatusCodeTest
+ * SummaryReportItemTest
  *
  * PHP version 5
  *
@@ -37,15 +37,15 @@
 namespace MessageMedia\RESTAPI;
 
 /**
- * MessageStatusCodeTest Class Doc Comment
+ * SummaryReportItemTest Class Doc Comment
  *
  * @category    Class */
-// * @description Status code of the message
+// * @description SummaryReportItem
 /**
  * @package     MessageMedia\RESTAPI
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  */
-class MessageStatusCodeTest extends \PHPUnit_Framework_TestCase
+class SummaryReportItemTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -81,9 +81,33 @@ class MessageStatusCodeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "MessageStatusCode"
+     * Test "SummaryReportItem"
      */
-    public function testMessageStatusCode()
+    public function testSummaryReportItem()
+    {
+
+    }
+
+    /**
+     * Test attribute "group"
+     */
+    public function testPropertyGroup()
+    {
+
+    }
+
+    /**
+     * Test attribute "value"
+     */
+    public function testPropertyValue()
+    {
+
+    }
+
+    /**
+     * Test attribute "subgroups"
+     */
+    public function testPropertySubgroups()
     {
 
     }

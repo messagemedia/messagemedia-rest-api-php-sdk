@@ -145,6 +145,7 @@ class SummaryReportProperties implements ArrayAccess
     const GROUPING_STATUS = 'STATUS';
     const GROUPING_STATUS_CODE = 'STATUS_CODE';
     const GROUPING_YEAR = 'YEAR';
+    const GROUPING_ACCOUNT = 'ACCOUNT';
     const SUMMARY_COUNT = 'COUNT';
     const SUMMARY_SUM = 'SUM';
     const SUMMARY_FIELD_UNITS = 'UNITS';
@@ -174,6 +175,7 @@ class SummaryReportProperties implements ArrayAccess
             self::GROUPING_STATUS,
             self::GROUPING_STATUS_CODE,
             self::GROUPING_YEAR,
+            self::GROUPING_ACCOUNT,
         ];
     }
     
@@ -231,7 +233,7 @@ class SummaryReportProperties implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = array();
-        $allowed_values = array("DAY", "DELIVERY_REPORT", "DESTINATION_ADDRESS", "DESTINATION_ADDRESS_COUNTRY", "FORMAT", "HOUR", "METADATA_KEY", "METADATA_VALUE", "MINUTE", "MONTH", "SOURCE_ADDRESS", "SOURCE_ADDRESS_COUNTRY", "STATUS", "STATUS_CODE", "YEAR");
+        $allowed_values = array("DAY", "DELIVERY_REPORT", "DESTINATION_ADDRESS", "DESTINATION_ADDRESS_COUNTRY", "FORMAT", "HOUR", "METADATA_KEY", "METADATA_VALUE", "MINUTE", "MONTH", "SOURCE_ADDRESS", "SOURCE_ADDRESS_COUNTRY", "STATUS", "STATUS_CODE", "YEAR", "ACCOUNT");
         if (!in_array($this->container['grouping'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'grouping', must be one of #{allowed_values}.";
         }
@@ -257,7 +259,7 @@ class SummaryReportProperties implements ArrayAccess
      */
     public function valid()
     {
-        $allowed_values = array("DAY", "DELIVERY_REPORT", "DESTINATION_ADDRESS", "DESTINATION_ADDRESS_COUNTRY", "FORMAT", "HOUR", "METADATA_KEY", "METADATA_VALUE", "MINUTE", "MONTH", "SOURCE_ADDRESS", "SOURCE_ADDRESS_COUNTRY", "STATUS", "STATUS_CODE", "YEAR");
+        $allowed_values = array("DAY", "DELIVERY_REPORT", "DESTINATION_ADDRESS", "DESTINATION_ADDRESS_COUNTRY", "FORMAT", "HOUR", "METADATA_KEY", "METADATA_VALUE", "MINUTE", "MONTH", "SOURCE_ADDRESS", "SOURCE_ADDRESS_COUNTRY", "STATUS", "STATUS_CODE", "YEAR", "ACCOUNT");
         if (!in_array($this->container['grouping'], $allowed_values)) {
             return false;
         }
@@ -331,9 +333,9 @@ class SummaryReportProperties implements ArrayAccess
      */
     public function setGrouping($grouping)
     {
-        $allowed_values = array('DAY', 'DELIVERY_REPORT', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'HOUR', 'METADATA_KEY', 'METADATA_VALUE', 'MINUTE', 'MONTH', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'STATUS', 'STATUS_CODE', 'YEAR');
+        $allowed_values = array('DAY', 'DELIVERY_REPORT', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'HOUR', 'METADATA_KEY', 'METADATA_VALUE', 'MINUTE', 'MONTH', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'STATUS', 'STATUS_CODE', 'YEAR', 'ACCOUNT');
         if (!in_array($grouping, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'grouping', must be one of 'DAY', 'DELIVERY_REPORT', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'HOUR', 'METADATA_KEY', 'METADATA_VALUE', 'MINUTE', 'MONTH', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'STATUS', 'STATUS_CODE', 'YEAR'");
+            throw new \InvalidArgumentException("Invalid value for 'grouping', must be one of 'DAY', 'DELIVERY_REPORT', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'HOUR', 'METADATA_KEY', 'METADATA_VALUE', 'MINUTE', 'MONTH', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'STATUS', 'STATUS_CODE', 'YEAR', 'ACCOUNT'");
         }
         $this->container['grouping'] = $grouping;
 

@@ -3,7 +3,7 @@ Australia's Leading Messaging Solutions for Business and Enterprise.
 
 
 - API version: 1.0.0
-- Build date: 2017-03-16T05:50:15.642Z
+- Build date: 2017-06-07T05:13:52.481Z
 For more information, please visit [https://www.messagemedia.com/contact-us](https://www.messagemedia.com/contact-us)
 
 ## Requirements
@@ -127,7 +127,6 @@ Class | Method | HTTP request | Description
  - [InlineResponse200](docs/Model/InlineResponse200.md)
  - [InlineResponse400](docs/Model/InlineResponse400.md)
  - [MessageFormatBody](docs/Model/MessageFormatBody.md)
- - [MessageStatusCode](docs/Model/MessageStatusCode.md)
  - [Messages](docs/Model/Messages.md)
  - [MetadataKeyBody](docs/Model/MetadataKeyBody.md)
  - [MetadataKeysResponse](docs/Model/MetadataKeysResponse.md)
@@ -155,12 +154,13 @@ Class | Method | HTTP request | Description
  - [Status](docs/Model/Status.md)
  - [StatusBody](docs/Model/StatusBody.md)
  - [StatusCodeBody](docs/Model/StatusCodeBody.md)
+ - [StatusesBody](docs/Model/StatusesBody.md)
  - [SubmittedMessage](docs/Model/SubmittedMessage.md)
  - [SubmittedMessages](docs/Model/SubmittedMessages.md)
  - [SummaryByBody](docs/Model/SummaryByBody.md)
  - [SummaryFieldBody](docs/Model/SummaryFieldBody.md)
  - [SummaryReport](docs/Model/SummaryReport.md)
- - [SummaryReportData](docs/Model/SummaryReportData.md)
+ - [SummaryReportItem](docs/Model/SummaryReportItem.md)
  - [SummaryReportProperties](docs/Model/SummaryReportProperties.md)
  - [TimezoneBody](docs/Model/TimezoneBody.md)
 

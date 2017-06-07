@@ -73,6 +73,7 @@ class AsyncSentMessagesDetailRequest implements ArrayAccess
         'source_address_country' => '\MessageMedia\RESTAPI\Model\SourceAddressCountryBody',
         'source_address' => '\MessageMedia\RESTAPI\Model\SourceAddressBody',
         'status' => '\MessageMedia\RESTAPI\Model\StatusBody',
+        'statuses' => '\MessageMedia\RESTAPI\Model\StatusesBody',
         'status_code' => '\MessageMedia\RESTAPI\Model\StatusCodeBody',
         'delivery_report' => '\MessageMedia\RESTAPI\Model\DeliveryReportBody',
         'delivery_options' => '\MessageMedia\RESTAPI\Model\DeliveryOptionsBody'
@@ -102,6 +103,7 @@ class AsyncSentMessagesDetailRequest implements ArrayAccess
         'source_address_country' => 'source_address_country',
         'source_address' => 'source_address',
         'status' => 'status',
+        'statuses' => 'statuses',
         'status_code' => 'status_code',
         'delivery_report' => 'delivery_report',
         'delivery_options' => 'delivery_options'
@@ -131,6 +133,7 @@ class AsyncSentMessagesDetailRequest implements ArrayAccess
         'source_address_country' => 'setSourceAddressCountry',
         'source_address' => 'setSourceAddress',
         'status' => 'setStatus',
+        'statuses' => 'setStatuses',
         'status_code' => 'setStatusCode',
         'delivery_report' => 'setDeliveryReport',
         'delivery_options' => 'setDeliveryOptions'
@@ -160,6 +163,7 @@ class AsyncSentMessagesDetailRequest implements ArrayAccess
         'source_address_country' => 'getSourceAddressCountry',
         'source_address' => 'getSourceAddress',
         'status' => 'getStatus',
+        'statuses' => 'getStatuses',
         'status_code' => 'getStatusCode',
         'delivery_report' => 'getDeliveryReport',
         'delivery_options' => 'getDeliveryOptions'
@@ -234,6 +238,7 @@ class AsyncSentMessagesDetailRequest implements ArrayAccess
         $this->container['source_address_country'] = isset($data['source_address_country']) ? $data['source_address_country'] : null;
         $this->container['source_address'] = isset($data['source_address']) ? $data['source_address'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['statuses'] = isset($data['statuses']) ? $data['statuses'] : null;
         $this->container['status_code'] = isset($data['status_code']) ? $data['status_code'] : null;
         $this->container['delivery_report'] = isset($data['delivery_report']) ? $data['delivery_report'] : null;
         $this->container['delivery_options'] = isset($data['delivery_options']) ? $data['delivery_options'] : null;
@@ -565,6 +570,27 @@ class AsyncSentMessagesDetailRequest implements ArrayAccess
     public function setStatus($status)
     {
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets statuses
+     * @return \MessageMedia\RESTAPI\Model\StatusesBody
+     */
+    public function getStatuses()
+    {
+        return $this->container['statuses'];
+    }
+
+    /**
+     * Sets statuses
+     * @param \MessageMedia\RESTAPI\Model\StatusesBody $statuses
+     * @return $this
+     */
+    public function setStatuses($statuses)
+    {
+        $this->container['statuses'] = $statuses;
 
         return $this;
     }

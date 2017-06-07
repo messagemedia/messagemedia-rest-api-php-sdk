@@ -60,7 +60,7 @@ class SummaryReport implements ArrayAccess
       */
     protected static $types = array(
         'properties' => '\MessageMedia\RESTAPI\Model\SummaryReportProperties',
-        'data' => '\MessageMedia\RESTAPI\Model\SummaryReportData[]'
+        'data' => '\MessageMedia\RESTAPI\Model\SummaryReportItem[]'
     );
 
     public static function types()
@@ -176,7 +176,7 @@ class SummaryReport implements ArrayAccess
 
     /**
      * Gets data
-     * @return \MessageMedia\RESTAPI\Model\SummaryReportData[]
+     * @return \MessageMedia\RESTAPI\Model\SummaryReportItem[]
      */
     public function getData()
     {
@@ -185,7 +185,7 @@ class SummaryReport implements ArrayAccess
 
     /**
      * Sets data
-     * @param \MessageMedia\RESTAPI\Model\SummaryReportData[] $data
+     * @param \MessageMedia\RESTAPI\Model\SummaryReportItem[] $data
      * @return $this
      */
     public function setData($data)

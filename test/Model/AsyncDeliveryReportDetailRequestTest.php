@@ -193,6 +193,14 @@ class AsyncDeliveryReportDetailRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "statuses"
+     */
+    public function testPropertyStatuses()
+    {
+
+    }
+
+    /**
      * Test attribute "source_address_country"
      */
     public function testPropertySourceAddressCountry()

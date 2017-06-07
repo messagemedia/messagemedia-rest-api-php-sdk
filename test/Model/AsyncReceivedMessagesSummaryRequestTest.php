@@ -209,6 +209,14 @@ class AsyncReceivedMessagesSummaryRequestTest extends \PHPUnit_Framework_TestCas
     }
 
     /**
+     * Test attribute "statuses"
+     */
+    public function testPropertyStatuses()
+    {
+
+    }
+
+    /**
      * Test attribute "status_code"
      */
     public function testPropertyStatusCode()

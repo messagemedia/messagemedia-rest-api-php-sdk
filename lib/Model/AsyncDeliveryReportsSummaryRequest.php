@@ -61,7 +61,7 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
     protected static $types = array(
         'summary_by' => '\MessageMedia\RESTAPI\Model\SummaryByBody',
         'summary_field' => '\MessageMedia\RESTAPI\Model\SummaryFieldBody',
-        'group_by' => 'string',
+        'group_by' => 'string[]',
         'start_date' => '\MessageMedia\RESTAPI\Model\StartDateBody',
         'end_date' => '\MessageMedia\RESTAPI\Model\EndDateBody',
         'timezone' => '\MessageMedia\RESTAPI\Model\TimezoneBody',
@@ -74,6 +74,7 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
         'source_address_country' => '\MessageMedia\RESTAPI\Model\SourceAddressCountryBody',
         'source_address' => '\MessageMedia\RESTAPI\Model\SourceAddressBody',
         'status' => '\MessageMedia\RESTAPI\Model\StatusBody',
+        'statuses' => '\MessageMedia\RESTAPI\Model\StatusesBody',
         'status_code' => '\MessageMedia\RESTAPI\Model\StatusCodeBody',
         'delivery_options' => '\MessageMedia\RESTAPI\Model\DeliveryOptionsBody'
     );
@@ -103,6 +104,7 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
         'source_address_country' => 'source_address_country',
         'source_address' => 'source_address',
         'status' => 'status',
+        'statuses' => 'statuses',
         'status_code' => 'status_code',
         'delivery_options' => 'delivery_options'
     );
@@ -132,6 +134,7 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
         'source_address_country' => 'setSourceAddressCountry',
         'source_address' => 'setSourceAddress',
         'status' => 'setStatus',
+        'statuses' => 'setStatuses',
         'status_code' => 'setStatusCode',
         'delivery_options' => 'setDeliveryOptions'
     );
@@ -161,6 +164,7 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
         'source_address_country' => 'getSourceAddressCountry',
         'source_address' => 'getSourceAddress',
         'status' => 'getStatus',
+        'statuses' => 'getStatuses',
         'status_code' => 'getStatusCode',
         'delivery_options' => 'getDeliveryOptions'
     );
@@ -184,6 +188,7 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
     const GROUP_BY_STATUS = 'STATUS';
     const GROUP_BY_STATUS_CODE = 'STATUS_CODE';
     const GROUP_BY_YEAR = 'YEAR';
+    const GROUP_BY_ACCOUNT = 'ACCOUNT';
     
 
     
@@ -208,6 +213,7 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
             self::GROUP_BY_STATUS,
             self::GROUP_BY_STATUS_CODE,
             self::GROUP_BY_YEAR,
+            self::GROUP_BY_ACCOUNT,
         ];
     }
     
@@ -239,6 +245,7 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
         $this->container['source_address_country'] = isset($data['source_address_country']) ? $data['source_address_country'] : null;
         $this->container['source_address'] = isset($data['source_address']) ? $data['source_address'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['statuses'] = isset($data['statuses']) ? $data['statuses'] : null;
         $this->container['status_code'] = isset($data['status_code']) ? $data['status_code'] : null;
         $this->container['delivery_options'] = isset($data['delivery_options']) ? $data['delivery_options'] : null;
     }
@@ -251,11 +258,6 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = array();
-        $allowed_values = array("DAY", "DESTINATION_ADDRESS", "DESTINATION_ADDRESS_COUNTRY", "FORMAT", "HOUR", "METADATA_KEY", "METADATA_VALUE", "MINUTE", "MONTH", "SOURCE_ADDRESS", "SOURCE_ADDRESS_COUNTRY", "STATUS", "STATUS_CODE", "YEAR");
-        if (!in_array($this->container['group_by'], $allowed_values)) {
-            $invalid_properties[] = "invalid value for 'group_by', must be one of #{allowed_values}.";
-        }
-
         return $invalid_properties;
     }
 
@@ -267,10 +269,6 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
      */
     public function valid()
     {
-        $allowed_values = array("DAY", "DESTINATION_ADDRESS", "DESTINATION_ADDRESS_COUNTRY", "FORMAT", "HOUR", "METADATA_KEY", "METADATA_VALUE", "MINUTE", "MONTH", "SOURCE_ADDRESS", "SOURCE_ADDRESS_COUNTRY", "STATUS", "STATUS_CODE", "YEAR");
-        if (!in_array($this->container['group_by'], $allowed_values)) {
-            return false;
-        }
         return true;
     }
 
@@ -319,7 +317,7 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
 
     /**
      * Gets group_by
-     * @return string
+     * @return string[]
      */
     public function getGroupBy()
     {
@@ -328,14 +326,14 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
 
     /**
      * Sets group_by
-     * @param string $group_by Field to group results set by
+     * @param string[] $group_by List of fields to group results set by
      * @return $this
      */
     public function setGroupBy($group_by)
     {
-        $allowed_values = array('DAY', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'HOUR', 'METADATA_KEY', 'METADATA_VALUE', 'MINUTE', 'MONTH', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'STATUS', 'STATUS_CODE', 'YEAR');
+        $allowed_values = array('DAY', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'HOUR', 'METADATA_KEY', 'METADATA_VALUE', 'MINUTE', 'MONTH', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'STATUS', 'STATUS_CODE', 'YEAR', 'ACCOUNT');
         if (!in_array($group_by, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'group_by', must be one of 'DAY', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'HOUR', 'METADATA_KEY', 'METADATA_VALUE', 'MINUTE', 'MONTH', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'STATUS', 'STATUS_CODE', 'YEAR'");
+            throw new \InvalidArgumentException("Invalid value for 'group_by', must be one of 'DAY', 'DESTINATION_ADDRESS', 'DESTINATION_ADDRESS_COUNTRY', 'FORMAT', 'HOUR', 'METADATA_KEY', 'METADATA_VALUE', 'MINUTE', 'MONTH', 'SOURCE_ADDRESS', 'SOURCE_ADDRESS_COUNTRY', 'STATUS', 'STATUS_CODE', 'YEAR', 'ACCOUNT'");
         }
         $this->container['group_by'] = $group_by;
 
@@ -590,6 +588,27 @@ class AsyncDeliveryReportsSummaryRequest implements ArrayAccess
     public function setStatus($status)
     {
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets statuses
+     * @return \MessageMedia\RESTAPI\Model\StatusesBody
+     */
+    public function getStatuses()
+    {
+        return $this->container['statuses'];
+    }
+
+    /**
+     * Sets statuses
+     * @param \MessageMedia\RESTAPI\Model\StatusesBody $statuses
+     * @return $this
+     */
+    public function setStatuses($statuses)
+    {
+        $this->container['statuses'] = $statuses;
 
         return $this;
     }

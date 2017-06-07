@@ -1,6 +1,6 @@
 <?php
 /**
- * MessageStatusCode
+ * SummaryReportItem
  *
  * PHP version 5
  *
@@ -39,28 +39,29 @@ namespace MessageMedia\RESTAPI\Model;
 use \ArrayAccess;
 
 /**
- * MessageStatusCode Class Doc Comment
+ * SummaryReportItem Class Doc Comment
  *
  * @category    Class */
- // @description Status code of the message
 /** 
  * @package     MessageMedia\RESTAPI
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  */
-class MessageStatusCode implements ArrayAccess
+class SummaryReportItem implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $modelName = 'MessageStatusCode';
+    protected static $modelName = 'SummaryReportItem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $types = array(
-        
+        'group' => 'string',
+        'value' => 'int',
+        'subgroups' => '\MessageMedia\RESTAPI\Model\SummaryReportItem[]'
     );
 
     public static function types()
@@ -73,7 +74,9 @@ class MessageStatusCode implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        
+        'group' => 'group',
+        'value' => 'value',
+        'subgroups' => 'subgroups'
     );
 
     public static function attributeMap()
@@ -86,7 +89,9 @@ class MessageStatusCode implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        
+        'group' => 'setGroup',
+        'value' => 'setValue',
+        'subgroups' => 'setSubgroups'
     );
 
     public static function setters()
@@ -99,7 +104,9 @@ class MessageStatusCode implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        
+        'group' => 'getGroup',
+        'value' => 'getValue',
+        'subgroups' => 'getSubgroups'
     );
 
     public static function getters()
@@ -123,6 +130,9 @@ class MessageStatusCode implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['group'] = isset($data['group']) ? $data['group'] : null;
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['subgroups'] = isset($data['subgroups']) ? $data['subgroups'] : null;
     }
 
     /**
@@ -147,6 +157,69 @@ class MessageStatusCode implements ArrayAccess
         return true;
     }
 
+
+    /**
+     * Gets group
+     * @return string
+     */
+    public function getGroup()
+    {
+        return $this->container['group'];
+    }
+
+    /**
+     * Sets group
+     * @param string $group
+     * @return $this
+     */
+    public function setGroup($group)
+    {
+        $this->container['group'] = $group;
+
+        return $this;
+    }
+
+    /**
+     * Gets value
+     * @return int
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
+    }
+
+    /**
+     * Sets value
+     * @param int $value
+     * @return $this
+     */
+    public function setValue($value)
+    {
+        $this->container['value'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Gets subgroups
+     * @return \MessageMedia\RESTAPI\Model\SummaryReportItem[]
+     */
+    public function getSubgroups()
+    {
+        return $this->container['subgroups'];
+    }
+
+    /**
+     * Sets subgroups
+     * @param \MessageMedia\RESTAPI\Model\SummaryReportItem[] $subgroups
+     * @return $this
+     */
+    public function setSubgroups($subgroups)
+    {
+        $this->container['subgroups'] = $subgroups;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      * @param  integer $offset Offset
