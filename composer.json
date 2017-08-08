@@ -1,0 +1,34 @@
+{
+    "name": "messagemedia/messagemedia-rest-api-php-sdk",
+    "description": "",
+    "keywords": [
+        "php",
+        "sdk",
+        "api"
+    ],
+    "homepage": "https://developers.messagemedia.com",
+    "license": "Apache v2",
+    "authors": [
+        {
+            "name": "MessageMedia",
+            "homepage": "https://developers.messagemedia.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8",
+        "satooshi/php-coveralls": "~1.0",
+        "squizlabs/php_codesniffer": "~2.6"
+    },
+    "autoload": {
+        "psr-4": { "MessageMedia\\RESTAPI\\" : "lib/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "MessageMedia\\RESTAPI\\" : "test/" }
+    }
+}
