@@ -142,6 +142,11 @@ class Configuration
     protected $sslVerification = true;
 
     /**
+     * The HTTP proxy to tunnel requests through
+     */
+    protected $proxy = '';
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -477,6 +482,24 @@ class Configuration
     public function getSSLVerification()
     {
         return $this->sslVerification;
+    }
+
+    /**
+     * Sets HTTP proxy to tunnel the request through
+     * @param string $proxy
+     */
+    public function setProxy($proxy)
+    {
+        $this->proxy = $proxy;
+    }
+
+    /**
+     * Gets HTTP proxy used to tunnel the request through
+     * @return string HTTP proxy
+     */
+    public function getProxy()
+    {
+        return $this->proxy;
     }
 
     /**
